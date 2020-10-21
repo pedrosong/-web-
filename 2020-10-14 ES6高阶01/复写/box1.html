@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            widows: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+<script>
+    function move(ele, target, dir, cb) {
+        let startLeft = parseInt(getComputedStyle(ele, null)[dir]);
+        let speed = (target - startLeft) > 0 ? 1 : -1;
+
+    }
+
+
+    let fn1 = function () {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(111)
+            }, 2000);
+        })
+    }
+
+    let fn2 = function () {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(222)
+            }, 2000);
+        })
+    }
+
+    let fn3 = function () {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(333)
+            }, 2000);
+        })
+    }
+</script>
+
+</html>

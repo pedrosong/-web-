@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myIndex</title>
+    <style>
+        .box1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+    <script src="./myJquery.js"></script>
+
+</head>
+
+<body>
+    <div class="box1">
+
+
+    </div>
+    <div class="box2">
+
+
+    </div>
+
+    <button>点击</button>
+</body>
+<script>
+    // 情况一 :获取样式  （只去获取第一个元素）
+let res =  $("div").css("width");
+console.log(res);
+// 情况二 （设置样式）
+//  $("div").css("background","yellow");
+
+// $.cssHooks.
+// 情况三 （设置多个样式）
+// $("div").css({background:"black",width:200,opacity:0.3});
+
+    $("button").click(() => {
+        $(".box1").animate({
+            width: "300px"});
+    })
+
+
+</script>
+
+</html>

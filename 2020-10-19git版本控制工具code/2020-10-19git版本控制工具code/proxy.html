@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let myobj =  {
+        myname:"张三",
+        age:20
+    }
+    let obj  = new Proxy(myobj,{
+        get(target,key){
+            console.log("get..");
+            return target[key];  
+        },
+        set(target,key,newValue){
+            console.log("set...");
+            target[key] = newValue;
+        },
+        // has(){
+        //     console.log("has");
+        //     return true;
+        // }
+    })
+//    console.log( obj.myname );
+// obj.myname = "李四";
+// console.log("myname" in obj);
+
+
+
+
+
+
+
+</script>
+</html>
