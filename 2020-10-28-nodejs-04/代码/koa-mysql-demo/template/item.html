@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/css.css" />
+</head>
+<body>
+    
+    <div id="app">
+        {% include "nav.html" %}
+    
+        <div id="main">
+            
+            <h1>{{item.name}}</h1>
+            
+            <hr>
+
+            <img src="/public/items/images/{{item.cover}}" alt="{{item.name}}">
+    
+        </div>
+    </div>
+
+</body>
+</html>

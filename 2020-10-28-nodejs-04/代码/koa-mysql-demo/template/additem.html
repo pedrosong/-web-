@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/css.css" />
+</head>
+<body>
+
+    <!-- 
+        实际上表单的提交就是一个上传数据的过程（每一次请求就是数据的上传）
+        服务器的每一次响应实际上就是一个下载过程
+
+        但是根据上传的数据的类型不同，上传的时候需要进行一些特定的设置（规范），为了能够更好的识别当前上传数据，以方便后端进行不同的识别和处理，所以上传的时候除了可以携带上传的必要数据以外，还可以通过 请求头 content-type 类设置（告诉服务器）当前我携带过去的数据是什么类型的：mime
+
+        在表单中有一个enctype属性，可以设置当前通过表单来发送请求的时候，提交过去的数据的content-type的类型
+
+        application/x-www-form-urlencoded：默认，数据是一个 urlencoded
+                    category_id=1&name=asdsa&price=123123&cover=1b0c619e070aed76.jpg
+        text/plain：纯文本
+        multipart/form-data：formData格式，二进制，如果提交的数据中包含了不能被application/x-www-form-urlencoded或者text/plain处理的特殊格式（二进制文件）
+     -->
+    
+    {% include "nav.html" %}
+
+    <div id="main">
+        
+       <div id="login" class="panel">
+           <h2>添加新商品</h2>
+           <form action="/additem" method="post" enctype="multipart/form-data">
+                <div class="form-item">
+                    <label>
+                        <span class="txt">分类：</span>
+                        <select name="category_id">
+                            {% for category in categories %}
+                                <option value="{{category.id}}">{{category.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                </div>
+                <div class="form-item">
+                    <label>
+                        <span class="txt">名称：</span>
+                        <input type="text" name="name" class="form-input">
+                    </label>
+                </div>
+                <div class="form-item">
+                    <label>
+                        <span class="txt">价格：</span>
+                        <input type="text" name="price" class="form-input">
+                    </label>
+                </div>
+                <div class="form-item">
+                    <label>
+                        <span class="txt">封面：</span>
+                        <!-- <input type="text" name="cover" class="form-input"> -->
+                        <div class="form-button primary" id="uploaderBtn">
+                            请选择一张封面图片进行上传
+                        </div>
+                    </label>
+                    <input multiple type="file" name="cover" id="cover" style="display: none;" />
+                </div>
+                <div class="form-item">
+                    <label>
+                        <span class="txt"></span>
+                        <button class="form-button success">添加</button>
+                    </label>
+                </div>
+           </form>
+       </div>    
+
+    </div>
+
+</body>
+</html>
+
+<script>
+    let uploaderBtn = document.querySelector('#uploaderBtn');
+    let coverElement = document.querySelector('#cover');
+
+    uploaderBtn.onclick = function() {
+        coverElement.click();
+    }
+
+    coverElement.onchange = function() {
+        // value 存储的是字符串，是这个文件的文件名（包含路径的）
+        // value 不是文件本身的二进制数据，而是文件名称
+        // console.log(this.value);
+        // uploaderBtn.innerHTML = this.value;
+
+        // files 存储才是具体的文件二进制数据对象
+        // console.log(this.files);
+        uploaderBtn.innerHTML = this.files[0].name;
+    }
+</script>

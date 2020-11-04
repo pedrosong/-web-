@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        表单提交的数据格式
+            1、application/x-www-form-urlencoded
+                提交字符型数据，使用较多，但是不能提交二进制文件数据，同时回把提交的数据进行url编码
+            2、multipart/form-data
+                可以提交任意类型数据（二进制文件），使用 formData格式来组织数据，优点：可以处理二进制数据，确定，处理后的数据比较大
+            3、text/plain
+                提交字符型数据，但是没有特殊的数据组织格式，一般很少使用
+     -->
+    <form action="" method="POST" enctype="multipart/form-data">
+        <p>
+            <input type="file" name="attachment" />
+        </p>
+        <p>
+            <button>提交</button>
+        </p>
+    </form>
+
+</body>
+</html>

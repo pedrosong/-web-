@@ -1,0 +1,19 @@
+<header id="header">
+    <a href="/" id="logo"></a>
+
+    
+    <nav id="nav">
+        <!-- <a href="">- {{title}} -</a> -->
+
+        {% for category in categories %}
+        <a href="">{{category.name}}</a>
+        {% endfor %}
+    </nav>
+
+    <div id="user">
+        <a href="/register">注册</a>
+        <a href="/login">登录</a>
+
+        <a href="/additem">添加商品</a>
+    </div>
+</header>
