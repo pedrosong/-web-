@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>获取数据</button>
+    <ul></ul>
+
+    <script src="/public/axios.min.js"></script>
+    <script>
+        let button = document.querySelector('button');
+        let ul = document.querySelector('ul');
+
+        // button.onclick = function() {
+        //     axios({
+        //         url: '/'
+        //     }).then(res => {
+        //         console.log('res', res);
+        //         console.log('data', res.data);
+        //     })
+        // }
+
+        button.onclick = async function() {
+            ul.innerHTML = '';
+            let {data} = await axios({
+                url: '/'
+            });
+
+            // console.log('data', data);
+            data.forEach(d => {
+                let li = document.createElement('li');
+                li.innerHTML = d.name;
+                ul.appendChild(li);
+            })
+        }
+    </script>
+</body>
+</html>

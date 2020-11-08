@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // XMLHttpRequest
+        (async function() {
+            // 问题：不支持上传下载监控事件
+            // let rs = await fetch('/data');
+
+            // let rs = await fetch(new Request('/data', {
+            //     method: 'post',
+            //     body: JSON.stringify({a: 1})
+            // }));
+
+            let rs = await fetch(new Request('/data'));
+
+            console.log('rs', rs);
+
+            console.log('header', rs.headers.get('content-type'));
+
+            // 把二进制流数据转成json格式
+            let data = await rs.json();
+            console.log('data', data);
+        })()
+
+    </script>
+</body>
+</html>

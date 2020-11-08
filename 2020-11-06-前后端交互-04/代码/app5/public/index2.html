@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>获取数据</button>
+    <ul></ul>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script> -->
+
+    <script>
+        let button = document.querySelector('button');
+        let ul = document.querySelector('ul');
+
+        button.onclick = function() {
+            let socket = io();
+
+            socket.on('connect', () => {
+                console.log('链接成功');
+            });
+
+            socket.on('hello', data => {
+                console.log('服务器返回数据：', data);
+            })
+        }
+    </script>
+</body>
+</html>
