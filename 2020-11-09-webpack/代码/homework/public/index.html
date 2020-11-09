@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button>链接服务器</button>
+        <input type="text" id="message">
+        <button>发送数据</button>
+    </div>
+    <ul></ul>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script> -->
+
+    <script>
+        let messageElement = document.querySelector('#message');
+        let buttons = document.querySelectorAll('button');
+        let ul = document.querySelector('ul');
+        let socket = null;
+
+        buttons[0].onclick = function() {
+            socket = io();
+
+            socket.on('connect', () => {
+                console.log('链接成功', socket.id);
+                buttons[0].innerHTML = socket.id;
+            });
+
+            socket.on('hello', data => {
+                console.log('服务器返回数据：', data);
+            });
+
+            socket.on('message', data => {
+                showMessage(data);
+            });
+        }
+
+        buttons[1].onclick = function() {
+            if (!socket) {
+                return alert('请先链接服务器');
+            }
+            let value = messageElement.value;
+            socket.emit('data', value);
+            // showMessage({
+            //     socketId: socket.id,
+            //     value
+            // });
+        }
+
+        function showMessage(data) {
+            let li = document.createElement('li');
+            let dt = new Date(data.datetime);
+            li.innerHTML = `${data.socketId} [${dt.getFullYear()}年${dt.getMonth()+1}月${dt.getDate()}日 ${dt.getHours()}:${dt.getMinutes()}:${dt.getSeconds()}] 说：${data.value}`;
+            ul.appendChild(li);
+            messageElement.value = '';
+            messageElement.focus();
+        }
+    </script>
+</body>
+</html>
