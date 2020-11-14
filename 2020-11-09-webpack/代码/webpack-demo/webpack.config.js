@@ -6,7 +6,7 @@ const path = require('path');
 
 module.exports = {
 
-    mode: 'development',
+    mode: 'df',
 
     entry: {
         'index': './src/a.js'
