@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <style>
+        .color {
+            color: pink;
+        }
+        .font {
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div :class="classes" :style="styleInfo">test class</div>
+    </div>
+    <script>
+        window.app = new Vue({
+            el: "#app",
+            data: {
+                msg: "hello world",
+                // 方法一：使用数组进行配置，并且可以使用三元表达式
+                //  => classes: ["color", true === false ? "font" : ""],
+                // 方法二：使用对象配置 
+                classes: {
+                    font: true,
+                    color: true
+                },
+                //比较一下class和style配置上区别：
+                styleInfo: {
+                  color: "red",
+                  fontSize: "50px",
+                },
+
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -9,11 +9,17 @@
   <body>
     <div id="app">
       {{ msg }} {{count}}
-      <!-- <button v-on:click="handleClick">click</button> -->
-      <!-- <button v-on:click="count++">click</button> -->
-      <!-- <button v-on:click="handleClick(0,$event)">click</button> -->
-      <button @click.once="count++">click</button>
-    </div>
+      <!-- 方法一：表达式填写方法名称，并在script.app.methods对象内写入该方法的函数体
+      <button v-on:click="handleClick">click</button>
+      方法二：表达式填写内联函数
+      <button v-on:click="count++">click</button>
+      引申一：方法可以传参
+      <button v-on:click="handleClick(0,$event)">click</button>
+      引申二：可以使用修饰符 => .once：只回调一次
+      <button  v-on：click.once="count++">click</button> -->
+      <button  @click.once="count++">click</button>
+
+    </div>e'w'w'w'w
     <script>
       // v-bind
       // :id
