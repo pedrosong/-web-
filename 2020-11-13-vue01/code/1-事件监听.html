@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{ msg }} {{count}}
+      <!-- <button v-on:click="handleClick">click</button> -->
+      <!-- <button v-on:click="count++">click</button> -->
+      <!-- <button v-on:click="handleClick(0,$event)">click</button> -->
+      <button @click.once="count++">click</button>
+    </div>
+    <script>
+      // v-bind
+      // :id
+      // @xxx
+      window.app = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello world",
+          count: 0,
+        },
+        //所有的函数都需要放到 methods
+        methods: {
+          handleClick(type, e) {
+            console.log(e);
+            // console.log(event)
+            console.log(type);
+            console.log("click");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

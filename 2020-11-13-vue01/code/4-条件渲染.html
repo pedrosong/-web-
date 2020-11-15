@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div v-if="age === 18">花一样的年龄</div>
+      <div v-else-if="age > 18">成年人</div>
+      <div v-else>未成年</div>
+
+      <div v-show="age === 18">show</div>
+    </div>
+    <script>
+      // js -> if
+      // 在学习新知识的时候要联想起老知识
+      // else elseif
+      window.app = new Vue({
+        el: "#app",
+        data: {
+          age: 17,
+        },
+      });
+    </script>
+  </body>
+</html>

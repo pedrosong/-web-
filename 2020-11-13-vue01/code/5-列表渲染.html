@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div v-for="(item,index) in list">{{index}} - {{item}}</div>
+      <!-- <div v-for="val in users">{{val.name}}</div> -->
+      <div v-for="(val,key,index) in users">
+        {{val.name}} - {{key}} - {{index}}
+      </div>
+    </div>
+    <script>
+      // id -> 后端给我们的
+      // js -> for
+      window.app = new Vue({
+        el: "#app",
+        data: {
+          list: ["xiaohong", "xiaohei", "haige", "zhonglaoshi"],
+          users: {
+            xiaohong: {
+              name: "xiaohong",
+            },
+
+            haige: {
+              name: "haige",
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

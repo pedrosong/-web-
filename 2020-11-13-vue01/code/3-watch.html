@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{ msg }} {{count}}
+      <button @click="handleClick">click</button>
+      {{hello1}} {{hello2}}
+    </div>
+    <script>
+      // watch -> 观察
+      // 观察一个响应式数据的变更
+      // 和 computed 有什么区别
+      // 1 对 多的关系
+      // 1 -> 代表的是一个观察的响应式对象
+      // 多 -》 可以改变多个响应式对象
+      window.app = new Vue({
+        el: "#app",
+        data: {
+          count: 0,
+          msg: "hello world",
+          hello1: "hello1",
+          hello2: "hello2",
+          user: {
+            name: "xiaohong",
+            age: 123,
+          },
+          list: [[1], [2]],
+        },
+        methods: {
+          handleClick() {
+            console.log("click");
+            this.count++;
+          },
+        },
+        watch: {
+          list: {
+            handler(newVal) {
+              console.log(newVal);
+            },
+          },
+          "user.age": {
+            handler(newValue, oldValue) {
+              console.log("user.age");
+              console.log(newValue);
+            },
+          },
+          // user: {
+          //   handler(newValue, oldValue) {
+          //     console.log(newValue);
+          //   },
+          //   deep: true,
+          // },
+          count: {
+            handler(newValue, oldValue) {
+              // 需求——》问题-》怎么去解决呢？》api》object-》 immediate true
+              console.log("newValue", newValue);
+              console.log("oldValue", oldValue);
+              // 做一点异步的事
+              // fetch
+              // 翻页 page
+              // fetch("xxxxxxx"+newValue).then(() => {
+              // }
+              // )
+              // 1 对 多 的关系
+              // 一个值
+              // 影响了多个值
+              this.hello1 = this.count + "hello1";
+              this.hello2 = this.count + "hello2";
+            },
+            immediate: true,
+          },
+          // count(newValue, oldValue) {
+          //   console.log("newValue", newValue);
+          //   console.log("oldValue", oldValue);
+          //   // 做一点异步的事
+          //   // fetch
+          //   // 翻页 page
+          //   // fetch("xxxxxxx"+newValue).then(() => {
+          //   // }
+          //   // )
+          //   // 1 对 多 的关系
+          //   // 一个值
+          //   // 影响了多个值
+          //   this.hello1 = this.count + "hello1";
+          //   this.hello2 = this.count + "hello2";
+          // },
+        },
+      });
+    </script>
+  </body>
+</html>

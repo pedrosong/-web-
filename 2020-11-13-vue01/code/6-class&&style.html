@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <style>
+      .color {
+        color: pink;
+      }
+
+      .font {
+        font-size: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div :class="classes" :style="styleInfo">test class</div>
+    </div>
+    <script>
+      window.app = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello world",
+          // classes: ["color", true === false ? "font" : ""],
+          // classes:[{
+          //   font: true
+          // }]
+          classes: {
+            // font: true,
+            // color: true
+          },
+          // styleInfo: {
+          //   color: "red",
+          //   fontSize: "50px",
+          // },
+          styleInfo: [
+            {
+              color: "red",
+            },
+            {
+              fontSize: "50px",
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

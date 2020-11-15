@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="./node_modules/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app" :id="testId + 123">{{msg + 123}}</div>
+    <script>
+      // 1. 视图
+      // 2. 逻辑
+      // hello world
+      // view -> model
+      // mvvm
+      // m -> model
+      // v -> view
+      // vm ->
+      // {{}} -> 文本绑定
+      // v-bind:id= "" ->
+      // v-bind ->
+      window.app = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello world",
+          testId: "123",
+        },
+      });
+    </script>
+  </body>
+</html>

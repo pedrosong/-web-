@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"></html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <!-- <div id="app">{{ msg.split("").reverse().join("") }}</div> -->
+    <!-- <div id="app">{{ reverseMsg }} --- {{reverseMessage()}}</div> -->
+    <div id="app">{{ reverseMsg }} }}</div>
+    <script>
+      // 计算属性 -》 是需要依赖别的属性的话 
+      // 依赖别的属性的属性
+      //  涉及到如何写好代码
+      //  1. 表达出代码的意图
+      // reverseMsg
+      // 把一些复杂的表达式放到计算属性内 不要堆积到 template 里面
+      // 2 缓存
+      //  只有计算属性有缓存
+      // 3. 多对一的关系
+      //  多 -》 计算属性依赖的响应式数据
+      //  1 -> 计算属性本身
+      window.app = new Vue({
+        el: "#app",
+        data: {
+          // 响应式数据
+          msg: "hello world",
+          count:0
+        },
+        methods: {
+          // 方法
+          reverseMessage() {
+            console.log("reverseMessage");
+            return this.msg.split("").reverse().join("");
+          },
+        },
+        computed: {
+          // 计算属性
+          reverseMsg() {
+            console.log("reverseMsg");
+            return this.msg.split("").reverse().join("") + this.count;
+            // 2秒 -> 浪费时间
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

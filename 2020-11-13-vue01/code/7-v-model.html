@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{msg}} {{isCheckbox}}
+      <!-- <input type="text" @input="changeInput" /> -->
+      <input type="text" v-model.number="msg" />
+      <input type="checkbox" v-model="isCheckbox" />
+      <!-- <input type="checkbox" @change="changeCheckbox" /> -->
+    </div>
+    <script>
+      // v-model 语法糖
+      // 双向绑定 -> 语法糖
+      window.app = new Vue({
+        el: "#app",
+        data: {
+          isCheckbox: false,
+          msg: "",
+        },
+        watch: {
+          msg(newValue, oldValue) {
+            console.log(typeof newValue);
+          },
+        },
+        methods: {
+          changeCheckbox(e) {
+            this.isCheckbox = e.target.checked;
+          },
+          changeInput(e) {
+            // changeinput -> 下面这个代码逻辑
+            this.msg = e.target.value;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
