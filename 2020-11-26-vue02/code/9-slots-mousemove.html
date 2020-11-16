@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      // 鼠标移动的功能
+      const Mousemove = {
+        template: `
+          <div>
+            <slot :x="x" :y="y"></slot>
+            </div>
+        
+        `,
+        methods: {
+          handleMousemove(e) {
+            this.x = e.pageX;
+            this.y = e.pageY;
+          },
+        },
+        mounted() {
+          window.addEventListener("mousemove", this.handleMousemove);
+        },
+        destroyed() {
+          window.removeEventListener("mousemove", this.handleMousemove);
+        },
+
+        data() {
+          return {
+            x: 0,
+            y: 0,
+          };
+        },
+      };
+      // slots
+      // 根组件
+
+      // ->wenti  vue3 里面解决 -> composition
+      const app = new Vue({
+        el: "#app",
+        components: {
+          Mousemove,
+        },
+        template: `
+            <div>
+              <Mousemove v-slot="{x,y}">
+                {{x}} - {{y}}
+                </Mousemove>
+            </div>
+        `,
+      });
+    </script>
+  </body>
+</html>

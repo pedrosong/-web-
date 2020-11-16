@@ -4,11 +4,8 @@ export default class Game{
         this.player = null;
     }
     login(username){
-        // this.player = {
-        //     username,
-        //     heroes:[{name:"",skills:[{},{}]},{name:"",skills:[{},{}]}],
-        // }
         this.player = new Player(username);
+        //实例化player对象，并吧username作为参数传入
     }
 }
 

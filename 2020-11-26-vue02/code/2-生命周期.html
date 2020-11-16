@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      Vue.component("Bar", {
+        template: "<div>bar</div>",
+        beforeCreate() {
+          // 创建之前调用
+          console.log("Bar - before - create");
+        },
+        created() {
+          // console.log("创建完成后调用 - ");
+          console.log("Bar - created");
+        },
+
+        beforeMount() {
+          // 挂载前调用
+          console.log("Bar - before mount");
+        },
+
+        mounted() {
+          // 挂载完成调用;
+          console.log("Bar - mounted");
+        },
+
+        beforeUpdate() {
+          // 更新前调用
+          console.log("Bar - before update");
+        },
+
+        updated() {
+          // 更新完成后调用;
+          console.log("Bar  - updated");
+        },
+
+        beforeDestroy() {
+          // 组件销毁之前调用;
+          console.log("Bar - before -destroy");
+          // 清空事件侦听啊
+        },
+        destroyed() {
+          console.log("Bar - destroy");
+        },
+      });
+
+      Vue.component("Foo", {
+        components: {},
+        beforeCreate() {
+          // 创建之前调用
+          console.log("foo - before - create");
+        },
+        created() {
+          // console.log("创建完成后调用 - ");
+          console.log("foo - created");
+        },
+
+        beforeMount() {
+          // 挂载前调用
+          console.log("foo - before mount");
+        },
+
+        mounted() {
+          // 挂载完成调用;
+          // 所有子组件都已经初始化完成
+          console.log("foo - mounted");
+        },
+
+        beforeUpdate() {
+          // 更新前调用
+          console.log("foo - before update");
+        },
+
+        updated() {
+          // 更新完成后调用;
+          console.log("foo  - updated");
+        },
+
+        beforeDestroy() {
+          // 组件销毁之前调用;
+          console.log("foo - before -destroy");
+        },
+        destroyed() {
+          console.log("foo - destroy");
+        },
+
+        data() {
+          return {
+            count: 0,
+          };
+        },
+
+        template: `
+            <div> foo
+                {{count}}
+                <Bar></Bar>
+                <button @click="count++"> click</button>
+              </div>
+          `,
+      });
+
+      // 根组件
+      app = new Vue({
+        el: "#app",
+
+        template: `
+            <div>
+                {{msg}}
+                <button @click="showFoo = !showFoo">showFoo</button>
+                <Foo v-if="showFoo"></Foo>
+            </div>
+        `,
+        data() {
+          return {
+            msg: "hello",
+            showFoo: false,
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

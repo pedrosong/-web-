@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      // emit
+
+      Vue.component("Foo", {
+        components: {},
+        data() {
+          return {};
+        },
+        methods: {
+          handleClick() {
+            console.log("click");
+
+            // 发起一个事件
+            this.$emit("heihei", 1);
+            // 烤肉串
+            // aa-bb-cc
+            // 驼峰
+            // aaBbCc
+            this.$emit("change-page", 2);
+          },
+        },
+
+        template: `
+            <div> foo
+              <button @click="handleClick"> to parent</button>
+              </div>
+          `,
+      });
+
+      // 根组件
+      const app = new Vue({
+        el: "#app",
+        methods: {
+          handleHeihei(v) {
+            console.log(v);
+            console.log("heihei");
+          },
+          handleChangePage(v) {
+            console.log(v);
+          },
+        },
+        template: `
+            <div>
+                {{msg}}
+                <Foo @heihei="handleHeihei" @change-page="handleChangePage"></Foo>
+            </div>
+        `,
+        data() {
+          return {
+            msg: "hello",
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

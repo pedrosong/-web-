@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      Vue.component("Foo", {
+        components: {},
+        props: ["visible", "number"],
+        data() {
+          return {};
+        },
+        methods: {
+          handleClose() {
+            this.$emit("update:visible", false);
+          },
+          handleNumber() {
+            this.$emit("update:number", Math.random());
+          },
+        },
+        template: `
+            <div v-if="visible"> foo
+              {{visible}}
+                <button @click="handleClose">close</button>
+                <button @click="handleNumber">number</button>
+              </div>
+          `,
+      });
+      // sync
+
+      // 根组件
+      const app = new Vue({
+        el: "#app",
+        template: `
+            <div>
+                {{msg}}
+                    {{count}}
+                <button @click="handleShowFoo">
+                    showFoo
+                  </button>
+                <Foo :visible.sync="showFoo" :number.sync="count" ></Foo>
+            </div>
+        `,
+
+        // value -> input
+        data() {
+          return {
+            msg: "hello",
+            showFoo: false,
+            count: 0,
+          };
+        },
+        methods: {
+          handleShowFoo() {
+            this.showFoo = true;
+          },
+          handleClose() {
+            this.showFoo = false;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

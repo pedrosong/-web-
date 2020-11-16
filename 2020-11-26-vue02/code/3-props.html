@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      // ts -> String
+      // function setName(name) {
+      //   // 函数的参数
+      // }
+      Vue.component("Foo", {
+        components: {},
+        props: {
+          fooName: {
+            type: String,
+            default: "foo --- name",
+            validator: (value) => {
+              console.log(value);
+              return value === "heihei";
+            },
+            required: true
+          },
+        },
+        data() {
+          return {};
+        },
+        methods: {
+          changeProp() {
+            console.log("changeProp");
+            // this.props.fooName = "123";
+          },
+        },
+
+        template: `
+            <div> foo
+
+                <button @click="changeProp">changeProp</button>
+
+              {{fooName}} </div>
+          `,
+      });
+
+      // 根组件
+      const app = new Vue({
+        el: "#app",
+        template: `
+            <div>
+                {{msg}}
+                <Foo ></Foo>
+            </div>
+        `,
+        data() {
+          return {
+            msg: "hello",
+            count: 0,
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

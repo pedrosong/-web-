@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      // 根组件
+      //focus
+      // input -> input
+      // v-if v-show v-focus
+
+      // 聚焦的自定义指令
+      Vue.directive("focus", {
+        bind(el, binding) {
+          // el.focus();
+          // console.log(binding)
+        },
+        inserted(el, binding) {
+          console.log(el);
+          console.log(binding);
+          el.focus();
+        },
+      });
+      
+
+      const app = new Vue({
+        el: "#app",
+        template: `
+            <div>
+              <input type="input" v-focus.a.b="msg"/>
+            </div>
+        `,
+        data() {
+          return {
+            msg: "hello",
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

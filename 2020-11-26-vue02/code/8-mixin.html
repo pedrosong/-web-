@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      // mixin -> 组件的复用性
+      // A -> featureA
+      // B -> featureA
+      // function setName(name) {
+      //   // 函数的参数
+      // }
+      // 鼠标移动的功能
+
+      const mousemoveMixin = {
+        methods: {
+          handleMousemove(e) {
+            this.x = e.pageX;
+            this.y = e.pageY;
+          },
+        },
+        mounted() {
+          window.addEventListener("mousemove", this.handleMousemove);
+        },
+        destroyed() {
+          window.removeEventListener("mousemove", this.handleMousemove);
+        },
+
+        data() {
+          return {
+            x: 0,
+            y: 0,
+          };
+        },
+      };
+      // slots
+
+      Vue.component("Foo", {
+        mixins: [mousemoveMixin],
+        template: `
+            <div>
+              Foo-  {{x}} -- {{y}}
+            </div>
+        `,
+      });
+
+      // 根组件
+      const app = new Vue({
+        el: "#app",
+        mixins: [mousemoveMixin],
+        template: `
+            <div>
+              <Foo></Foo>
+            </div>
+        `,
+      });
+    </script>
+  </body>
+</html>

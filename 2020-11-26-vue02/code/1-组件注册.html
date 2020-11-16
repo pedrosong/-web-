@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      // .vue
+      // 注册组件
+      // 全局注册
+      // 局部注册
+      const Bar = {
+        template: `
+            <div> bar </div>
+          `,
+      };
+
+      // 组件 -》 object
+      // object.data ={name:123,count:123}
+      // 引用类型的问题
+
+      Vue.component("Foo", {
+        components: {
+          Bar,
+        },
+        data() {
+          return {
+            key: value,
+          };
+        },
+
+        template: `
+            <div> foo <Bar></Bar> </div>
+          `,
+      });
+
+      function Main(arguments) {
+        // Foo -> Bar
+      }
+
+      function Foo(arguments) {
+        function Bar(arguments) {}
+
+        // bar
+      }
+
+      // vue2 的时候 必须要有一个 根节点
+
+      // 根组件
+      const app = new Vue({
+        el: "#app",
+        template: `
+            <div>
+                {{msg}}
+                <Foo></Foo>
+                <Bar></Bar>
+            </div>
+        `,
+        data() {
+          return {
+            msg: "hello",
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

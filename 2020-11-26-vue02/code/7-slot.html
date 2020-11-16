@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      Vue.component("Foo", {
+        components: {},
+        data() {
+          return {};
+        },
+
+        template: `
+            <div> foo 
+              <div>
+                <slot name="header" count="123" test="234">header</slot>
+                </div>
+              <slot name="main">main</slot>
+              <slot name="footer">footer</slot>
+              </div>
+          `,
+      });
+
+      // 根组件
+      const app = new Vue({
+        el: "#app",
+        template: `
+            <div>
+                {{msg}}
+                <Foo>
+                  <template #header="{count}">
+                    {{count}}
+                    red
+                  </template>
+
+                  <template #main>
+                    yellow
+                  </template>
+
+                  <template #footer>
+                    blue
+                  </template>
+                </Foo>
+            </div>
+        `,
+        data() {
+          return {
+            msg: "hello",
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

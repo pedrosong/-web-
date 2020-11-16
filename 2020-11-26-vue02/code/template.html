@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      // function setName(name) {
+      //   // 函数的参数
+      // }
+
+      Vue.component("Foo", {
+        components: {
+        },
+        data() {
+          return {
+          };
+        },
+
+        template: `
+            <div> foo </div>
+          `,
+      });
+
+      // 根组件
+      const app = new Vue({
+        el: "#app",
+        template: `
+            <div>
+                {{msg}}
+                <Foo></Foo>
+            </div>
+        `,
+        data() {
+          return {
+            msg: "hello",
+          };
+        },
+      });
+    </script>
+  </body>
+</html>
