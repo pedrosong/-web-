@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- <img src="./static/images.jpeg" alt="jojo" height=25% width=25%> -->
+    <div id="app"> </div>
+    <script>
+        //PhotoItem组件
+        Vue.component("PhotoItem", {
+            components: {},
+            props: {
+                imgSrc: {
+                    type: String,
+                    default: 'https://img.komicolle.org/2020-03/15837554779538.jpg',
+                },
+                imgName: {
+                    type: String,
+                    default: 'imgName：二乔',
+                }
+            },
+            data() {
+                return {}
+            },
+            template: `
+                <div>
+                    <img :src="imgSrc" alt="jojo" height=25% width=25%>
+                    <div>{{imgName}}</div>
+                </div>`,
+        });
+
+        //根组件
+        const app = new Vue({
+            el: "#app",
+            template: `
+                <div>
+                    <h1>{{message}}</h1><br>
+
+                    <PhotoItem></PhotoItem>    
+                </div>`,
+            data() {
+                return {
+                    message: '作业暗号：潘森吃素'
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
