@@ -1,20 +1,24 @@
 <template>
-    <div>
-        <button @click="handleClick">
-            <slot>default btn</slot>
-        </button>
-    </div>
+  <div>
+    {{disbable}}
+    <button
+      data-test="clickBtn"
+      @click="handleClick"
+    >
+      <slot>default btn</slot>
+    </button>
+  </div>
 </template>
 
 <script>
 export default {
-    props:['disabled'],
-    methods: {
-        handleClick(){
-            if(this.disabled) return;
-            this.$emit('click');
-            console.log('resolved')
-        }
+  props: ['disbable'],
+  methods: {
+    handleClick() {
+      console.log(this.disbable)
+      if (this.disbable) return;
+      this.$emit('click-event');
     }
+  }
 }
 </script>
