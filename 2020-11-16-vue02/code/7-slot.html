@@ -17,13 +17,12 @@
         },
 
         template: `
-            <div> foo 
-              <div>
-                <slot name="header" count="123" test="234">header</slot>
-                </div>
-              <slot name="main">main</slot>
-              <slot name="footer">footer</slot>
-              </div>
+            <div> 
+              foo
+              <slot name="header" test1="123" test2="234">header in slot</slot>
+              <slot name="main">main in slot</slot>
+              <slot name="footer">footer in slot</slot>
+            </div>
           `,
       });
 
@@ -32,27 +31,22 @@
         el: "#app",
         template: `
             <div>
-                {{msg}}
                 <Foo>
-                  <template #header="{count}">
-                    {{count}}
-                    red
+                  <template #header="{test1}">
+                    {{test1}}
                   </template>
 
                   <template #main>
-                    yellow
+                    main in template
                   </template>
 
                   <template #footer>
-                    blue
                   </template>
                 </Foo>
             </div>
         `,
         data() {
-          return {
-            msg: "hello",
-          };
+          return {};
         },
       });
     </script>

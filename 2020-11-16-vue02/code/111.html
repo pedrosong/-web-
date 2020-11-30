@@ -1,0 +1,22 @@
+const app = new Vue({
+    el: "#app",
+    template: `
+        <div>
+            <Foo>
+              <template #header="{test1}">
+                {{test1}}
+              </template>
+
+              <template #main>
+                main in template
+              </template>
+
+              <template #footer>
+              </template>
+            </Foo>
+        </div>
+    `,
+    data() {
+      return {};
+    },
+  });
