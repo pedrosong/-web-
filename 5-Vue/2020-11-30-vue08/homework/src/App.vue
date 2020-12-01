@@ -6,11 +6,11 @@
 
 <script>
 import Circle from "./components/Circle";
-
 export default {
   name: "App",
   components: {
     Circle,
+    // container
   }
 
 };

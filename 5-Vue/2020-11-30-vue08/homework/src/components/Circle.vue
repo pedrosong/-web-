@@ -1,7 +1,5 @@
 <template>
-  <container>
-    <circle :x="moveX" y="100"></circle>
-  </container>
+  <circle :x="moveX" y="100"></circle>
 </template>
 
 <script>
@@ -10,7 +8,7 @@ import { ref, onUnmounted, onMounted } from "vue";
 export default {
   setup() {
     const moveX = ref(100);
-    let speed = 5;   
+    let speed = 5;
     // 组件挂在完成后小球在移动
     onMounted(() => {
       game.ticker.add(() => {
