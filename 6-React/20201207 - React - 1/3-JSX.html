@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+  <script src="js/babel.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<Header></Header>
+<script type="text/babel">
+/*
+  JSX: react 的一个语法糖，JavaScript + XML 支持在 JS 中，扩展 XML 的语法
+*/
+// let logo = React.createElement("h1",{id:"logo"},"开课吧");
+// let a1 = React.createElement("a",{href:"/index"},"a1");
+// let a2 = React.createElement("a",{href:"/about"},"a2");
+// let nav = React.createElement("nav",{className:"nav"},a1,a2);
+// let header = React.createElement("header",{className:"header div",id:"header"},logo,nav); //创建虚拟DOM
+
+let header = <header className="header div" id="header">
+    <h1 id="logo">开课吧</h1>
+    <nav>
+      <a href="/index">a1</a>
+      <a href="/about">a2</a>
+    </nav>
+    <br />
+</header>
+ReactDOM.render(
+  header,
+  document.querySelector("#root"),
+  ()=>{
+    console.log("构建完成")
+  }
+);
+</script>  
+</body>
+</html>

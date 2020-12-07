@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/react.js"></script>
+  <script src="js/react-dom.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script>
+/*
+  React.createElement 构建视图，返回值是一个用来描述视图的虚拟DOM
+  ReactElment  React.createElement(type,props,...children);
+      type 节点类型
+      props 属性 object
+      children 内容或子节点
+  ReactDOM.render(inner, container[, callback])  将构建好的视图添加到真实DOM中
+    - element：要渲染的内容
+    - container：要渲染的内容存放容器
+    - callback：渲染后的回调函数 
+
+*/
+let logo = React.createElement("h1",{id:"logo"},"开课吧");
+let a1 = React.createElement("a",{href:"/index"},"a1");
+let a2 = React.createElement("a",{href:"/about"},"a2");
+let nav = React.createElement("nav",{className:"nav"},a1,a2);
+let header = React.createElement("header",{className:"header div",id:"header"},logo,nav); //创建虚拟DOM
+ReactDOM.render(
+  header,
+  document.querySelector("#root"),
+  ()=>{
+    console.log("构建完成")
+  }
+);
+</script>  
+</body>
+</html>
