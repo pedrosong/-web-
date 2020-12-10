@@ -1,19 +1,13 @@
 <template>
-<TodoList></TodoList>
-<AddTodoItem></AddTodoItem>
+<Todo></Todo>
 </template>
 
 <script>
-import TodoList from "./components/TodoList"
-import AddTodoItem from './components/AddTodoItem';
+import Todo from "./components/Todo";
 export default {
   name: 'App',
   components: {
-    TodoList,
-    AddTodoItem,
-  },
-  setup(){
-
+    Todo,
   }
 }
 </script>

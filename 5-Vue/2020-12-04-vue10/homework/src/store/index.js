@@ -14,7 +14,8 @@ export default createStore({
       });
     },
     removeItem(state, id) {
-      state.todoItems.filter((item) => {
+      console.log("remove",  id);
+      state.todoItems = state.todoItems.filter((item) => {
         return item.id != id;
       });
     },
@@ -40,4 +41,6 @@ export default createStore({
       });
     },
   },
+  actions: {},
+  modules: {},
 });
