@@ -27,8 +27,8 @@ class App extends Component{
     remove = (id) => {
         const {data} = this.state;
         this.setState({
-          data:data.filter(item => item.id !== id)
-        })
+          data: data.filter((item) => item.id !== id),
+        });
     }
     render(){
         let { data } = this.state
