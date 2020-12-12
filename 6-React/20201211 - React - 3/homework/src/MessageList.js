@@ -1,22 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Component } from "react";
+import Message from "./Message";
 
 class MessageList extends Component{
     render(){
-        const { data,remove } = this.props
-
-        return <ul className="messageList">
-        {data.map((item,index) => {
-            return <li key={index}>
-            <h3>{item.name}</h3>
-            <p>{item.msg}</p>
-            <a onClick={()=>{
-                const id =item.id
-                remove(id)
-            }}>删除</a>
-        </li>
-        })}
-    </ul>
+        const { data } = this.props;
+        return (
+          <ul className="messageList">
+            {data.map((item) => {
+              return <Message {...this.props} data={item} key={item.id} />;
+            })}
+          </ul>
+        );
     };
 };
 

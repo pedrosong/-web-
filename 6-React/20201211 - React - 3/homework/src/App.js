@@ -13,23 +13,42 @@ class App extends Component{
             }]
     };
     addMeaasge = (newName, newMsg) => {
-        const {data} = this.state;
-        data.push({
-            id:Date.now(),
-            name:newName,
-            msg:newMsg
-        });
-        this.setState({
-            data
-        })
-
+      const { data } = this.state;
+      let newData = [
+        ...data,
+        {
+          id: Date.now(),
+          name: newName,
+          msg: newMsg,
+        },
+      ];
+      this.setState({
+        data: newData,
+      });
     };
+    editMessage = (id, newMsg)=>{
+      const {data} = this.state;
+      for(let i = 0; i < data.length; i++){
+          if(id===data[i].id){
+            data[i] = {
+              ...data[i],
+              msg:newMsg
+            }
+            console.log(data[i])
+            break;
+          }
+      }
+     this.setState({
+       data
+     })
+    }
     remove = (id) => {
         const {data} = this.state;
         this.setState({
           data: data.filter((item) => item.id !== id),
         });
-    }
+    };
+
     render(){
         let { data } = this.state
         return <section className="wrap">
@@ -40,6 +59,7 @@ class App extends Component{
         <MessageList 
             data = { data }
             remove = { this.remove }
+            editMessage = { this.editMessage }
         />
     </section>
     };
