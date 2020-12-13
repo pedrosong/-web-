@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { PureComponent } from "react";
+import { Component } from "react";
 
-class Message extends PureComponent {
+class Message extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,14 +16,20 @@ class Message extends PureComponent {
   }
   msgEdited = null;
   render() {
-    const { data, remove, editMessage } = this.props;
+    const { data, remove, editMessage, selectMsg } = this.props;
     const { isEdit, msgToEdit } = this.state;
-    const { id, name, msg } = data;
+    const { id, name, msg, isChosen } = data;
 
     return (
-      <li key={id} className={isEdit ? "editing" : ""}>
+      <li className={isEdit ? "editing" : ""}>
         <h3>{name}</h3>
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          checked={isChosen}
+          onChange={({ target }) => {
+            selectMsg(id, target);
+          }}
+        />
         <p
           onDoubleClick={() => {
             this.setState({

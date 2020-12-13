@@ -7,7 +7,7 @@ class AddMessage extends Component{
     }
     render(){
         const {newName, newMsg} = this.state
-        const { addMeaasge } = this.props
+        const { addMessage } = this.props
         return <div className="addMessage">
         <input 
             type="text" 
@@ -31,7 +31,7 @@ class AddMessage extends Component{
             ></textarea>
         <button
             onClick={() => {
-                addMeaasge(newName,newMsg);
+                addMessage(newName,newMsg);
                 this.setState({
                     newName:"",
                     newMsg:""
