@@ -1,0 +1,53 @@
+.wrap {
+  margin: 30px auto;
+  width: 600px;
+}
+.nav {
+  display: flex;
+  border-bottom: 1px solid #000;
+}
+.nav a {
+  flex: 1;
+  text-decoration: none;
+  font: 16px/40px "宋体";
+  color: blue;
+  text-align: center;
+}
+.nav a.active {
+  margin-bottom: -1px;
+  color: red;
+  border-bottom: 1px solid red;
+}
+.list_nav {
+  display: flex;
+  background: #ccc;
+}
+.list_nav a {
+  flex: 1;
+  font: 14px/30px "宋体";
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+}
+.list_nav a.active {
+  color: #fff;
+  background: #000;
+}
+.page_nub {
+  margin: 30px 0;
+  display: flex;
+  font: 14px/30px "宋体";
+}
+.page_nub a,
+.page_nub span {
+  margin: 0 5px;
+  padding: 0 8px;
+  border: 1px solid #666;
+  color: #000;
+  text-decoration: none;
+}
+.page_nub span {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
