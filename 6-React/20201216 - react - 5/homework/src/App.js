@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { Redirect, Route, Switch } from "react-router-dom";
+import List from "./view/list/index";
+import NotFound from "./view/404/index";
+import data from "./database/data";
+import "./css/index.css";
 
 function App() {
+  const types = [...Object.keys(data), "all"];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route
+        path="/list/:type?/:page?"
+        exact
+        render={({ match }) => {
+          const { type = "all", page = "1" } = match.params;
+          if (types.includes(type) && parseInt(page) === Number(page)) {
+            return <List />;
+          }
+          return <Redirect to="/404" />;
+        }}
+      />
+      <Redirect from="/" exact strict to="/list" />
+      <Route path="/404" exact component={NotFound} />
+    </Switch>
   );
 }
 
