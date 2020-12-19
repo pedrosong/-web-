@@ -10,8 +10,8 @@
 - https://www.redux.org.cn/
 
 # 安装 Redux
-npm i redux
-yarn add redux
+`npm i redux`
+`yarn add redux`
 
 # 课程内容
 
