@@ -1,0 +1,12 @@
+.box {
+  width: 200px;
+  height: 200px;
+  background: red;
+  color: #fff;
+}
+.div {
+  margin-top: 10px;
+  width: 200px;
+  height: 200px;
+  background: #f1f1f1;
+}

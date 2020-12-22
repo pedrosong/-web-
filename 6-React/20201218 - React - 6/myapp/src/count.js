@@ -1,10 +1,10 @@
-import { useDispatch, useSelector, useStore } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Count() {
   const count = useSelector(state=>state.count);
   const dispatch = useDispatch();
-  //console.log(useStore());
-  return <div>
+
+    return <div>
       <p>{count}</p>
       <button onClick={()=>{
           dispatch({
