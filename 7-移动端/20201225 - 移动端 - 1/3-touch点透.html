@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 200px;
+      height: 200px;
+      background: green;
+      opacity: .5;
+    }
+  </style>
+</head>
+<body>
+<a href="https://www.baidu.com">百度</a>
+<div id="box"></div>
+<script>
+    let box = document.querySelector("#box");
+    // box.addEventListener("touchend",()=>{
+    //   setTimeout(() => {
+    //     box.style.display = "none";
+    //   }, 300);
+       
+    // });
+    box.addEventListener("touchend",(e)=>{
+        box.style.display = "none";
+        e.preventDefault();
+    });
+</script>
+<!-- 
+  1. 移动端也可以使用mouse事件，但是有一定时间延迟(300ms)
+  事件点透：
+    在移动端触碰元素时，会立即执行加在元素的 touch 事件，然后记录触碰的坐标，然后一段延迟时间之后，会从该坐标查找元素，如果元素有 mouse 事件就执行。
+  解决办法：
+    1. 不要在移动端使用 mouse 事件，包括 a 的 href
+    2. 延迟touch事件
+    3. 阻止默认事件
+-->
+
+</body>
+</html>

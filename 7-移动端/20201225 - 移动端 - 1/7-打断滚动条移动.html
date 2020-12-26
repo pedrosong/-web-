@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    #list li {
+      font: 20px/40px "宋体";
+      border-bottom: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+<div id="page">
+  <ul id="list">
+
+  </ul>
+</div>
+<script>
+  {
+    let list = document.querySelector("#list");
+    list.innerHTML = [...(".".repeat(100))].map((item,index)=>{
+        return `<li>这是第${index}个li</li>`;
+    }).join("");  
+  }
+ /*
+    在执行阻止默认事件以前，已经触发了滚动条滚动，则不能打断
+ */
+  {
+    let page = document.querySelector("#page");
+    let isOff = false;
+    page.addEventListener("touchstart",({changedTouches})=>{
+        isOff = false;
+        setTimeout(() => {
+          isOff = true;
+        }, 2000);
+    });
+    page.addEventListener("touchmove",(e)=>{
+        if(!isOff){
+            e.preventDefault();
+        }
+    });
+    
+  }
+</script>
+</body>
+</html>

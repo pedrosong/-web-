@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 10vw;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        #page {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #wrap {
+            position: relative;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #list {
+            float: left;
+            display: flex;
+            display: -webkit-box;
+        }
+
+        #list li {
+            flex: none;
+            width: 100vw;
+        }
+
+        #list img {
+            width: 100%;
+            display: block;
+        }
+
+        .nav {
+            position: absolute;
+            left: 0;
+            bottom: .2rem;
+            width: 100%;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .nav a {
+            display: inline-block;
+            width: .3rem;
+            height: .3rem;
+            background: #fff;
+            margin: 0 .1rem;
+            border-radius: .15rem;
+            transition: .3s;
+        }
+
+        .nav .active {
+            width: .6rem;
+            color: #fff;
+        }
+
+        .textList {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .textList li {
+            font: 14px/40px "宋体";
+            padding-left: 20px;
+            border-bottom: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div id="page">
+    <div>
+        <div id="wrap">
+            <ul id="list">
+                <li><img src="img/banner01.png" /></li>
+                <li><img src="img/banner02.png" /></li>
+                <li><img src="img/banner03.png" /></li>
+                <li><img src="img/banner04.png" /></li>
+            </ul>
+            <nav class="nav">
+                <a class="active"></a><a></a><a></a><a></a>
+            </nav>
+        </div>
+        <ul class="textList">
+
+        </ul>
+    </div>
+</div>
+<script src="dist/bscroll.min.js"></script>
+<script>
+//填充列表内容
+{
+    let list = document.querySelector(".textList");
+    list.innerHTML = [...(".".repeat(100))].map((item,index)=>`<li>这是第${index}个li</li>`).join("");
+}    
+{
+    let page = document.querySelector("#page");
+    let pageScroll = new BScroll(page);
+    // better-scroll 必须传入滑动区域, 滑动时移动的是该元素的第0个子元素
+    let wrap = document.querySelector("#wrap");
+    let navs = document.querySelectorAll(".nav a");
+    let wrapScroll = new BScroll(wrap,{
+        scrollX:true, // 设置左右滑动
+        momentum: false,// 取消掉轻抚的缓冲动画
+        probeType: 3, // 设置 scroll 事件的执行频率
+        snap:{
+            loop: true, // 设置无缝滚动
+            threshold: .3 // 设置超过宽度的.3时进行上一张下一张切换
+        }
+    });
+    // scrollEnd 滑动结束之后
+    wrapScroll.on("scrollEnd",({x})=>{
+        navs.forEach(item=>{
+            item.classList.remove("active");
+        })
+        let now = wrapScroll.getCurrentPage().pageX;
+        //console.log(x);
+       navs[now].classList.add("active");
+    });
+    wrapScroll.on("scroll",()=>{
+        console.log("scroll");
+    })
+    /*
+        probeType 设置 scroll 事件的执行频率
+
+        常用事件：
+            beforeScrollStart --> touchstart
+            touchMove 手指移动中
+            touchEnd 手指抬起
+            scroll (手指移动中 + 手指抬起后缓冲动画)
+            scrollEnd 滑动结束(包括缓冲动画结束)
+    */
+}
+  
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #page {
+      box-sizing: border-box;
+      position: fixed;
+      left: 0;
+      top: 25vh;
+      width: 100%;
+      height: 50vh;
+      border: 1px solid #000;
+    }
+    #list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    #list li {
+      font: 20px/40px "宋体";
+      border-bottom: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+<div id="page">
+  <ul id="list">
+
+  </ul>
+</div>
+<script>
+  {
+    let list = document.querySelector("#list");
+    list.innerHTML = [...(".".repeat(100))].map((item,index)=>{
+        return `<li>这是第${index}个li</li>`;
+    }).join("");  
+  }
+  //滑屏
+  /*
+    元素拖拽：
+      元素移动后位置 = （移动后手指坐标 - 摁下时手指坐标） + 摁下元素位置 
+  */
+  {
+    let page = document.querySelector("#page");
+    let list = document.querySelector("#list");
+    let startPoint = 0; //摁下时手指坐标
+    let startY = 0; // 摁下时元素位置
+    let translateY = 0;
+    page.addEventListener("touchstart",({changedTouches})=>{
+      startPoint = changedTouches[0].pageY;
+      startY = translateY;
+    });
+    page.addEventListener("touchmove",({changedTouches})=>{
+      let nowPoint = changedTouches[0].pageY;
+      translateY = nowPoint - startPoint + startY;
+      console.log(translateY);
+      list.style.transform = `translateY(${translateY}px)`
+    });
+    
+  }
+</script>
+</body>
+</html>

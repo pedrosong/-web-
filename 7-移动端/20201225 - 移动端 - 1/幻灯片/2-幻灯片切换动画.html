@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 10vw;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        #page {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #wrap {
+            position: relative;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #list {
+            float: left;
+            display: flex;
+            display: -webkit-box;
+        }
+
+        #list li {
+            flex: none;
+            width: 100vw;
+        }
+
+        #list img {
+            width: 100%;
+            display: block;
+        }
+
+        .nav {
+            position: absolute;
+            left: 0;
+            bottom: .2rem;
+            width: 100%;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .nav a {
+            display: inline-block;
+            width: .3rem;
+            height: .3rem;
+            background: #fff;
+            margin: 0 .1rem;
+            border-radius: .15rem;
+            transition: .3s;
+        }
+
+        .nav .active {
+            width: .6rem;
+            color: #fff;
+        }
+
+        .textList {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .textList li {
+            font: 14px/40px "宋体";
+            padding-left: 20px;
+            border-bottom: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <ul id="list">
+        <li><img src="img/banner01.png" /></li>
+        <li><img src="img/banner02.png" /></li>
+        <li><img src="img/banner03.png" /></li>
+        <li><img src="img/banner04.png" /></li>
+    </ul>
+    <nav class="nav">
+        <a class="active"></a><a></a><a></a><a></a>
+    </nav>
+</div>
+<ul class="textList">
+
+</ul>
+<script>
+// 幻灯片
+{
+  let wrap = document.querySelector("#wrap");
+  let list = document.querySelector("#list");
+  let navs = document.querySelectorAll(".nav a");
+  let startPoint = {};
+  let startX = 0;
+  let translateX = 0;
+  let now = 0;//记录当前应该是第几张
+  let threshold = .3;// 抬起时如果移动距离，超过了该比例则进行上一张下一张切换
+  let imgW = wrap.clientWidth; // 一张图的宽度
+  let disPoint = {};
+  list.innerHTML += list.innerHTML;
+  wrap.addEventListener("touchstart",(e)=>{
+      let touch = e.changedTouches[0];
+      list.style.transition = "none";
+      if(now === 0){ //切换到第二个第0张
+        now = navs.length;
+      } else if(now === navs.length*2 - 1){//切换到第一组最后一张
+        now = navs.length - 1;
+      }
+      translateX = -now*imgW;
+      list.style.transform = `translateX(${translateX}px)`;
+      startPoint = {
+        x: touch.pageX,
+        y: touch.pageY
+      };
+      startX = translateX;
+  });
+  wrap.addEventListener("touchmove",(e)=>{
+      let touch = e.changedTouches[0];
+      let nowPoint = {
+        x: touch.pageX,
+        y: touch.pageY
+      };
+      disPoint = {
+        x: nowPoint.x - startPoint.x,
+        y: nowPoint.y - startPoint.y 
+      };
+      translateX = disPoint.x + startX;
+      list.style.transform = `translateX(${translateX}px)`;
+  });
+  wrap.addEventListener("touchend",()=>{
+      //console.log(disPoint.x );
+      if(Math.abs(disPoint.x) > imgW*threshold){
+          //console.log("执行上一张下一张切换");
+          now -=  disPoint.x/Math.abs(disPoint.x);
+      }
+      translateX = -now*imgW;
+      list.style.transition = ".3s";
+      list.style.transform = `translateX(${translateX}px)`;
+      navs.forEach(item=>{
+        item.className = "";
+      })
+      navs[now%navs.length].className = "active";
+  });
+}
+</script>
+</body>
+</html>
