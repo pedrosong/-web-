@@ -1,28 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+    <style>
+      body {
+        margin: 0;
+      }
+      #wrap {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      #list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        flex-direction: column;
+      }
+      #list li {
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+      }
+      #list .li_1 {
+        background-image: url(img/img_1.jpg);
+      }
+      #list .li_2 {
+        background-image: url(img/img_2.jpg);
+      }
+      #list .li_3 {
+        background-image: url(img/img_3.jpg);
+      }
+      #list .li_4 {
+        background-image: url(img/img_4.jpg);
+      }
+      #list .li_5 {
+        background-image: url(img/img_5.jpg);
+      }
+      .nav {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        right: 10px;
+        top: 0;
+        height: 100%;
+        width: 10px;
+        justify-content: center;
+      }
+      .nav a {
+        width: 10px;
+        height: 10px;
+        margin: 4px 0;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+      }
+      .nav .active {
+        background: rgba(255, 255, 255, 1);
+      }
+    </style>
+  </head>
+  <body>
     <div id="wrap">
-        <ul id="list">
-            <li class="li_1"></li>
-            <li class="li_2"></li>
-            <li class="li_3"></li>
-            <li class="li_4"></li>
-            <li class="li_5"></li>
-        </ul>
-        <nav class="nav">
-            <a class="active"></a>
-            <a></a>
-            <a></a>
-            <a></a>
-            <a></a>
-        </nav>
+      <ul id="list">
+        <li class="li_1"></li>
+        <li class="li_2"></li>
+        <li class="li_3"></li>
+        <li class="li_4"></li>
+        <li class="li_5"></li>
+      </ul>
+      <nav class="nav"><a class="active"></a><a></a><a></a><a></a><a></a></nav>
     </div>
-</body>
+  </body>
 
-<script src="./js/index.js"></script>
+  <script src="./dist/bscroll.js"></script>
+  <script>
+    let wrap = document.querySelector("#wrap");
+    let list = document.querySelector("#list");
+    let scroll = new BScroll(wrap, {
+      snap: {
+        loop: true,
+        threshold: 0.2,
+      },
+    });
+    let interValId ;
+
+    interValId = setInterval(() => {
+      scroll.next();
+    }, 3000);
+    // 按下时停止自动播放
+    list.addEventListener("touchstart", () => {
+      window.clearInterval(interValId);
+    });
+    // 抬起时继续自动播放
+    list.addEventListener("touchend", () => {
+      interValId = setInterval(() => {
+        scroll.next();
+      }, 3000);
+    });
+  </script>
 </html>
