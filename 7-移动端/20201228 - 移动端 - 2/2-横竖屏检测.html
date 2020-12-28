@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    
+    /*
+      媒询的横竖检测，是基于可视区的宽高比，来进行判断的 
+     */
+     #info {
+       display: flex;
+       position: fixed;
+       left: 0;
+       top: 0;
+       width: 100%;
+       height: 100%;
+       background: rgba(0, 0, 0, .6);
+     }
+     #info span{
+       margin: auto;
+       font: 30px/50px "宋体";
+       color: #fff;
+     }
+  </style>
+</head>
+<div id="info">
+  <span>请在竖屏下浏览本应用</span>
+</div>
+<body>
+  <script>
+    //alert(window.orientation);
+    /*
+      window.orientation 横竖屏检测
+        竖屏： 0  180
+        横屏：-90 90
+
+      "orientationchange" 事件，监听手机横竖屏发生变化
+    */
+    showInfo();
+    window.addEventListener("orientationchange",showInfo);
+    function showInfo() {
+      let info = document.querySelector("#info");
+      console.log(window.orientation);
+      switch (window.orientation) {
+        case 90:
+        case -90:  
+          info.style.display = "flex";
+          break;
+        default:
+          info.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #welcome {
+      display: flex;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: greenyellow;
+    }
+
+    #welcome div {
+      margin: auto;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="welcome">
+    <div>
+      <h1>欢迎使用开课吧摇一摇</h1>
+      <button id="welcome-btn">进入应用</button>
+    </div>
+  </div>
+  <div id="info"></div>
+  <script src="motion.js"></script>
+  <script>
+    /*
+      监听手机加速度发生变化
+      加速度系列问题处理：
+        1. 加速度取值，安卓下 和 IOS 下，数值正好相反，例如：安卓下 x = 5，则 IOS 下 x = -5;
+        2. 在 IOS 9 之后，如果在应用中要使用加速度相关API，必须的基于 https 协议
+        3. 在 IOS12.2 及之后，用户在设备中手动关闭“动作与方向的访问权限”
+        4. 在 IOS 13 及之后，IOS 要求使用动作与方向访问权时，必须获取用户授权
+        5. 在 IOS 13.3 及之后，动作与方向的访问授权必须用户手动触发
+    */
+    function throttle(fn, interval = 200, isStart = true) {
+      let timer = 0;
+      return function (...args) {
+        if (timer) {
+          return;
+        }
+        const _this = this;
+        isStart && fn.apply(_this, args);
+        timer = setTimeout(() => {
+          (!isStart) && fn.apply(_this, args);
+          timer = 0;
+        }, interval);
+      }
+    }
+    // 入场
+    {
+      let welcome = document.querySelector("#welcome");
+      let welcomeBtn = document.querySelector("#welcome-btn");
+      welcomeBtn.addEventListener("touchend", (e) => {
+        //调用摇一摇
+        shake(() => {
+          info.innerHTML += `<h2>摇一摇结束</h2>`;
+        }, () => {
+          info.innerHTML += `<h2>触发摇一摇</h2>`;
+        })
+        welcome.remove();
+        e.preventDefault();
+      });
+    }
+    // 摇一摇
+    // 两次加速度之间的差值，大于某个值，就可以认定用户进行了摇一摇
+    /*
+       shakeing 摇一摇中，要做的事情
+       shakeEnd 摇一摇后，要做的事情
+    */
+    function shake(shakeEnd = () => { }, shakeing = () => { }) {
+      let lastX = 0;
+      let lastY = 0;
+      let lastZ = 0;
+      let isShake = false;
+      const MaxRange = 50; // 两次差值超过该幅度认定用户进行摇一摇 
+      const MinRange = 10; // 当浮动小于该值，认定用户停止摇一摇
+      const removeShake = setMotion(throttle((e) => {
+        const { x, y, z } = e.acceleration;
+        const nowRange = Math.abs(x - lastX) + Math.abs(y - lastY) + Math.abs(z - lastZ);
+        if (nowRange > MaxRange) { //当前的差值大于设定的最大值，认定用户在摇一摇
+          isShake = true; //用户开始摇一摇
+          shakeing();
+        } else if (nowRange < MinRange && isShake) {
+          shakeEnd(); //摇一摇结束
+          isShake = false;
+        }
+        lastX = x;
+        lastY = y;
+        lastZ = z;
+      }));
+      return removeShake;
+    }
+  </script>
+</body>
+
+</html>

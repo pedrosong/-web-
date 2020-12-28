@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+/*
+ 函数节流[throttle]
+    - 让函数保持在一个可接受的固定频率执行
+*/
+let box = document.querySelector("#box");
+let index = 0;
+function throttle(fn,interval=200,isStart = true) {
+    let timer = 0;
+    return function(...args){ 
+        if(timer){
+          return ;
+        }
+        const _this = this;
+        isStart&&fn.apply(_this,args);
+        timer = setTimeout(() => {
+          (!isStart)&&fn.apply(_this,args);
+          timer = 0;
+        }, interval);
+    }
+}
+// box.onmousemove = function(e){
+//   index++;
+//   console.log("move",index);
+// };
+box.onmousemove = throttle(function(e){
+  index++;
+  console.log("move",index);
+},1000,true);
+
+</script>  
+</body>
+</html>

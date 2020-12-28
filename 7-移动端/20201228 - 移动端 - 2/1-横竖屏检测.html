@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #div {
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+    @media screen and (orientation: landscape) {
+        #div {
+          background: green;
+        }
+    }
+    /*
+      媒询的横竖检测，是基于可视区的宽高比，来进行判断的 
+     */
+  </style>
+</head>
+<body>
+  <div id="div"></div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      margin: -25px 0 0 -25px;
+      width: 50px;
+      height: 50px;
+      background: red;
+      color: #fff;
+      font: 16px/1.8 "宋体";
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn1">获取权限</button>
+  <button id="btn2">停止运动</button>
+  <div id="box"></div>
+  <script src="motion.js"></script>
+  <script>
+    /*
+      监听手机加速度发生变化
+      加速度系列问题处理：
+        1. 加速度取值，安卓下 和 IOS 下，数值正好相反，例如：安卓下 x = 5，则 IOS 下 x = -5;
+        2. 在 IOS 9 之后，如果在应用中要使用加速度相关API，必须的基于 https 协议
+        3. 在 IOS12.2 及之后，用户在设备中手动关闭“动作与方向的访问权限”
+        4. 在 IOS 13 及之后，IOS 要求使用动作与方向访问权时，必须获取用户授权
+        5. 在 IOS 13.3 及之后，动作与方向的访问授权必须用户手动触发
+    */
+    let box = document.querySelector("#box");
+    let btn1 = document.querySelector("#btn1");
+    let btn2 = document.querySelector("#btn2");
+    let tx = 0;
+    let ty = 0;
+    btn1.addEventListener("touchstart", () => {
+      let removeLister = setMotion((e) => {
+        const motion = e.acceleration; //当前手机加速度
+        const { x, y, z } = motion;
+        const motion2 = e.accelerationIncludingGravity; // 手机自身的加速度 +  地球对手机的引力
+        let { x: x2, y: y2, z: z2 } = motion2;
+        x2 -= x;
+        y2 -= y;
+        tx += x2;
+        ty -= y2;
+        box.style.transform = `translate(${tx}px,${ty}px)`;
+      });
+      btn2.addEventListener("touchstart",()=>{
+        removeLister();
+      },{once:true})
+    });
+  </script>
+</body>
+
+</html>

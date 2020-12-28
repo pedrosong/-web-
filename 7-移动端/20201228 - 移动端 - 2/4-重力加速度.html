@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 260px;
+      height: 260px;
+      background: red;
+      color: #fff;
+      font: 16px/1.8 "宋体";
+    }
+  </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+/*
+  监听手机加速度发生变化
+*/  
+let box = document.querySelector("#box");
+window.addEventListener("devicemotion",(e)=>{
+  const motion = e.acceleration; //当前手机加速度
+  const {x,y,z} = motion;
+  const motion2 = e.accelerationIncludingGravity; // 手机自身的加速度 +  地球对手机的引力
+  const {x:x2,y:y2,z:z2} = motion2;
+  box.innerHTML = `
+      x:${x.toFixed(0)}<br/>
+      x2:${x2.toFixed(0)}<br/>
+      y:${y.toFixed(0)}<br/>
+      y2:${y2.toFixed(0)}<br/>
+      z:${z.toFixed(0)}<br/>
+      z2:${z2.toFixed(0)}
+  `;
+});
+</script>
+</body>
+</html>

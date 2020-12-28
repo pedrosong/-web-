@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      margin:-25px 0 0 -25px;
+      width: 50px;
+      height: 50px;
+      background: red;
+      color: #fff;
+      font: 16px/1.8 "宋体";
+    }
+  </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+//console.log(window.navigator.userAgent);
+function isAndroid() {
+    const {userAgent} = window.navigator;
+    return userAgent.indexOf("Android") > -1|| userAgent.indexOf("Adr") > -1;
+}
+/*
+  监听手机加速度发生变化
+  注意：
+    加速度取值，安卓下 和 IOS 下，数值正好相反，例如：安卓下 x = 5，则 IOS 下 x = -5;
+*/  
+let box = document.querySelector("#box");
+let tx = 0;
+let ty = 0;
+window.addEventListener("devicemotion",(e)=>{
+  const motion = e.acceleration; //当前手机加速度
+  const {x,y,z} = motion;
+  const motion2 = e.accelerationIncludingGravity; // 手机自身的加速度 +  地球对手机的引力
+  let {x:x2,y:y2,z:z2} = motion2;
+  if(isAndroid()){
+    x = -x;
+    y = -y;
+    x2 = -x2;
+    y2 = -y2
+  }
+  x2 -= x;
+  y2 -= y;
+  tx += x2;
+  ty -= y2;
+  box.style.transform = `translate(${tx}px,${ty}px)`;
+});
+</script>
+</body>
+</html>

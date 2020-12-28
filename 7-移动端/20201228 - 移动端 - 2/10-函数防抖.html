@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+/*
+ 函数防抖[debounce]
+    - 希望函数只执行一次，哪怕我进行了多次调用
+*/
+  let box = document.querySelector("#box");
+  let index = 0;
+  //console.time(index);
+  // box.onmousemove = function() {
+  //   //console.timeEnd(index);
+  //   index++;
+  //   //console.time(index);
+  //   //console.log("move");
+  // }
+  // 防抖，尾部执行
+  // let timer = 0;
+  // box.onmousemove = function() {
+  //    // index++;
+  //     clearTimeout(timer);
+  //     timer = setTimeout(() => {
+  //         console.log("move",index);
+  //     }, 200);
+  // };
+  // 防抖头部执行
+//   let timer = 0;
+//   let isEnd = true;
+//   box.onmousemove = function() {
+//       index++;
+//       clearTimeout(timer);
+//       isEnd&&(console.log("move",index))
+//       isEnd = false;
+//       timer = setTimeout(() => {
+//         isEnd = true;
+//       }, 200);
+//   };
+// }
+
+function debounce(fn,delay=200,isStart = false) {
+    let timer = 0;
+    let isEnd = true;
+    return function(...args){ //经过防抖处理的函数
+      const _this = this;
+      clearTimeout(timer);
+      if(isStart){
+        isEnd&&fn.apply(_this,args);
+        isEnd = false;
+      }
+      timer = setTimeout(() => {
+        (!isStart)&&fn.apply(_this,args);
+         isEnd = true;
+      }, delay);
+    }
+}
+box.onmousemove = debounce(function(e){
+  console.log("move",this,e);
+},200,true);
+
+</script>  
+</body>
+</html>
