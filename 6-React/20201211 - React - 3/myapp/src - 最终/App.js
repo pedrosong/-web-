@@ -1,6 +1,7 @@
 import { Component } from "react";
 import AddTodo from "./addTodo";
 import "./index.css";
+import Stats from "./stats";
 import TodoList from "./todoList";
 /*
   !!! 如果 state 中的数据，是一个引用类型，要修改它时，一定记得返回一个新的引用
@@ -48,14 +49,34 @@ class App extends Component {
       data:data.filter(item=>item.id!==id)
     });
   }
+  removeDone=()=>{
+    const {data} = this.state;
+    this.setState({
+      data:data.filter(item=>(!item.done))
+    });
+  }
   changeDone=(id,done)=>{
     const {data} = this.state;
     for(let i = 0; i < data.length; i++){
         if(id===data[i].id){
-          //data[i].done = done;
           data[i] = {
             ...data[i],
             done
+          }
+          break;
+        }
+    }
+   this.setState({
+     data
+   })
+  }
+  editTodo=(id,todo)=>{
+    const {data} = this.state;
+    for(let i = 0; i < data.length; i++){
+        if(id===data[i].id){
+          data[i] = {
+            ...data[i],
+            todo
           }
           break;
         }
@@ -74,11 +95,21 @@ class App extends Component {
       <AddTodo 
         addTodo={this.addTodo}
       />
-      <TodoList 
-          data={data}
-          remove={this.remove}
-          changeDone={this.changeDone}
-      />
+      {
+        data.length>0?(<>
+            <TodoList 
+              data={data}
+              remove={this.remove}
+              changeDone={this.changeDone}
+              editTodo = {this.editTodo}
+          />
+          <Stats 
+              data={data}
+              removeDone={this.removeDone}
+          />
+        </>):""
+      }
+     
     </div>
   </div>
   }

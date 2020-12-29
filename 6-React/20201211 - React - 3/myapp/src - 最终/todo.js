@@ -1,41 +1,31 @@
-import { createRef, PureComponent } from "react";
+import {PureComponent } from "react";
 /*
-  PureComponent 功能和 Component 完全一致，只是，在更新时，会进行，props 和 state 的浅对比
-*/
-/*
-  进入编辑状态一定要让输入框获得焦点，这时操作其他地方才可以触发输入的失焦事件
-*/
-/*
-  ref: 用于获取组件实例或 真实DOM节点
-  createRef 用来创建一个 ref 对象
-  在元素中将 ref={ref 对象}
+  编辑 todo:
+    !!! 退出编辑状态时，如果value 为空，todo则保持原有内容，不为空则修改todo
 */
 class Todo extends PureComponent {
-  state = {
-    setEdit: false
+  constructor(props){
+    super(props);
+    this.state = {
+      setEdit: false,
+      editVal: props.data.todo //将 todo 备份一份，修改时只修改备份
+    }
   }
-  editText = createRef();
-  todoEl = createRef();
+  
+  editText=null;
   componentDidUpdate(prevProps,prevState){
       if((!prevState.setEdit)
       && this.state.setEdit){
-          //console.log("进入编辑状态");
           // 让输入框获得焦点
-        this.editText.current.focus();
+        this.editText.focus();
       }
-      //console.log(prevState.setEdit,this.state.setEdit);
   }
-  // componentDidMount(){
-  //   console.log(this.editText);
-  //   console.log(this.todoEl);
-  // }
   render() {
-    const {data,remove,changeDone} = this.props;
+    const {data,remove,changeDone,editTodo} = this.props;
     const {id,todo,done} = data;
-    const {setEdit} = this.state;
+    const {setEdit,editVal} = this.state;
     return <li 
       className={setEdit?"editing":""}
-      ref={this.todoEl}
     >
           <div className={`todo ${done?"done":""}`}>
             <div className="display">
@@ -65,8 +55,23 @@ class Todo extends PureComponent {
                 <input 
                   className="todo-input" 
                   type="text" 
-                  ref={this.editText}
+                  ref={(node)=>{
+                    this.editText = node;
+                  }}
+                  value={editVal}
+                  onChange={({target})=>{
+                    this.setState({
+                      editVal:target.value
+                    })
+                  }}
                   onBlur={()=>{
+                    if(editVal.trim()){
+                      editTodo(id,editVal); //如果编辑框的数据不为空，则修改todo
+                    } else {
+                      this.setState({
+                        editVal:todo
+                      })
+                    }
                     this.setState({
                       setEdit:false
                     })
