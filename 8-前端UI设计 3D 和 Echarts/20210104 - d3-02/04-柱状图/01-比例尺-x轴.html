@@ -71,7 +71,7 @@
     const xScale=d3.scaleBand()
         .domain(xChartData)
         .rangeRound(xPixelRange)
-
+    console.log('xScale',xScale)
     /*===========5-建立x 轴对象===========*/
     /*基于比例尺xScale，用axisBottom()方法创建刻度朝下的坐标轴生成器 xAxisGenerator*/
     const xAxisGenerator=d3.axisBottom(xScale)
