@@ -1,0 +1,39 @@
+.logo img {
+    height: 50px;
+}
+.ant-list-item.item {
+    padding-left: 15px;
+}
+.username {
+    margin-right: 15px;
+}
+.ant-list.list {
+    border: 1px solid #eee;
+}
+.title {
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+}
+.intro {
+    font-size: 16px;
+    color: #888;
+}
+.intro > * {
+    margin-right: 20px;
+}
+.wrap {
+    max-width: 980px;
+    margin: 0 auto;
+}
+.wrap img {
+    max-width: 100%;
+}
+.ant-list-item.items {
+    padding: 12px;
+}
+.title span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

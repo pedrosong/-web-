@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #000;
+            transition: 1s;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>   
+<script>
+ /*
+    元素没有渲染到屏幕中时，transition不起效果 
+ */   
+ {
+     let box = document.querySelector("#box");
+     box.onclick = function(){
+        //this.style.width = "300px";
+        let newDiv = document.createElement("div");
+        document.body.appendChild(newDiv);
+        setTimeout(()=>{
+            newDiv.style.width = "300px";
+        });
+     };
+ }   
+</script> 
+</body>
+</html>

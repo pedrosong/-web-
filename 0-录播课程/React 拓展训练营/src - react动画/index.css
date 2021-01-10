@@ -1,0 +1,18 @@
+.div {
+    opacity: 0;
+    transform-origin: left;
+}
+.my-enter {
+    transition: 1s;
+    opacity: 1;
+}
+.my-done-enter {
+    opacity: 1;
+}
+.my-exit {
+    transition: 1s;
+    transform: scale(0);
+}
+.my-done-exit {
+    opacity: 0;
+}

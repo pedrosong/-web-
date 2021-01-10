@@ -1,0 +1,47 @@
+.wrap {
+    margin: 0 auto;
+    width: 1200px;
+}
+a {
+    text-decoration: none;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.clearFix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.indexNav {
+    font: 14px/36px "宋体";
+    color: #333;
+    border-bottom: 1px solid #000;
+}
+.subMenu {
+    width: 200px;
+    float: left;
+    font: 14px/32px "宋体";
+    border: 1px solid #000;
+    border-top: none;
+}
+.subMenu li {
+    border-bottom: 1px solid #000;
+    text-align: center;
+}
+.subMenu li:last-child {
+    border-bottom: none;
+}
+.subMenu a {
+    display: block;
+}
+.subMenu .active {
+    background: #000;
+    color: #fff;
+}
+.content {
+    float: right;
+    width: 960px;
+}

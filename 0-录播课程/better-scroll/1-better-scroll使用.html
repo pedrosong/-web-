@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        #wrap {
+            /* 使用 better-scroll 时 wrap 必须有一个固定高度 */
+            width: 300px;
+            height: 80vh;
+            border: 1px solid #000;
+            overflow: hidden;
+        }
+        #list {
+            width: 200%;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #list li {
+            font: 14px/30px "宋体";
+            border-bottom: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+ <div id="wrap">
+     <!-- better-scroll 默认滑动的是 wrap 下的第0个子元素  -->
+    <ul id="list"></ul>
+ </div> 
+<script src="js/bscroll.js"></script> 
+<script>
+// 给 list 添加内容
+{
+    let list = document.querySelector("#list");
+    list.innerHTML = [...(".".repeat(100))].map((item,index)=>{
+        return `<li>这是第${index}个li</li>`;
+    }).join("");
+}
+// 添加 better-scroll
+{
+    let wrap = document.querySelector("#wrap");
+    let bscroll = new BScroll(wrap);
+}
+</script>   
+</body>
+</html>

@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+a {
+    text-decoration: none;
+}
+.header {
+    position: relative;
+    padding: 0 50px;
+    border-bottom: 1px solid #ddd;
+}
+.title {
+    margin: 0;
+    font: bold 16px/2 "宋体";
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+    color: #333;
+}
+.back-btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    color: #337ab7;
+    font: 12px/32px "宋体";
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.wrap {
+    margin: 30px auto 0;
+    width: 700px;
+}
+.nav {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+.nav a {
+    padding: 10px 15px;
+    margin: 0 2px -1px 0;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    color: #337ab7;
+}
+.nav .active {
+    border-color: #ddd #ddd transparent #ddd;
+    background: #fff;
+    color: #333;
+}
+.list {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+}
+.list li {
+    font: 14px/32px "宋体";
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #337ab7;
+    border-bottom: 1px solid #eee;
+}
+.list li:last-child {
+    border: none;
+}
+.pagination {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+.pagination a {
+    border: 1px solid #ddd;
+    padding: 0 10px;
+    line-height: 30px;
+    margin: 0 2px;
+    color: #337ab7;
+}
+.pagination .active {
+    color: #333;
+    border-color: transparent;
+}
+.tipic {
+    font: 12px/1.8 "宋体";
+}
+.tipic img {
+    margin: 0 auto;
+    display: block;
+    max-width: 80%;
+}
+.info {
+    font: 20px/60px "宋体";
+    text-align: center;
+}

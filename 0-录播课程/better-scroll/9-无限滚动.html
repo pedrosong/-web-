@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #wrap {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: #eee;
+            overflow: hidden;
+        }
+        .tombstone {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #000;
+        }
+        .inner {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #000;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="div"></div>
+</div>      
+<script src="js/bscroll.js"></script>
+<script>
+{
+    let wrap = document.querySelector("#wrap");
+    let nub = 0;
+    let infinityScroll = new BScroll(wrap,{
+        infinity:{
+            fetch(count) {
+                console.log(count);
+                // 获取大于 count 数量的数据，该函数是异步的，它需要返回一个 Promise。
+                // 成功获取数据后，你需要 resolve 数据数组（也可以 resolve 一个 Promise）。
+                // 数组的每一个元素是列表数据，在 render 方法执行的时候会传递这个数据渲染。
+                // 如果没有数据的时候，你可以 resolve(false)，来告诉无限滚动列表已经没有更多数据了。
+                nub++;
+                return new Promise((resolve)=>{
+                    setTimeout(()=>{
+                        if(nub > 10){
+                            resolve(false);
+                        } else {
+                            let data = [...(".".repeat(count))];
+                            resolve(data);
+                        }   
+                        
+                    },Math.random()*1000+1000);
+                })
+            },
+            render(item) {
+                // 渲染每一个元素节点，item 是数据
+                // 该函数需要返回渲染后的 DOM 节点。
+                let div = document.createElement("div");
+                div.className = "inner";
+                return div;
+            },
+            createTombstone() {
+                // 返回一个墓碑 DOM 节点。
+                let div = document.createElement("div");
+                div.className = "tombstone"
+                return div;
+            }
+        }
+    });     
+}
+</script>  
+</body>
+</html>

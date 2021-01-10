@@ -1,0 +1,29 @@
+@keyframes fade-in {
+    0%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.p {
+    opacity: 0;
+    transform-origin: left;
+}
+.appear {
+    animation: 1s fade-in;
+    opacity: 1;
+}
+.enter {
+    transition: 1s;
+}
+.enter-done {
+    opacity: 1;
+}
+.exit {
+    transition: 1s;
+    transform: scale(0);
+}
+.exit-done {
+    opacity: 0;
+}
