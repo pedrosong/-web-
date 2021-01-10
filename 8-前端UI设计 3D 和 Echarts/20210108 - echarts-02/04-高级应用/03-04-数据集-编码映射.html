@@ -36,19 +36,11 @@
         /*设置类目轴和数值轴*/
         xAxis:{type:'category'},
         yAxis:{type:'value'},
-        /*encode 编码映射
-        *   x x轴维度
-        *   y y轴维度
-        *   seriesName 系列名，n|[n]|[n,m,...]
-        *   tooltip 提示信息，n|[n]|[n,m,...]
-        * */
         series:{
             type:'bar',
             encode:{
                 x:0,
                 y:2,
-                // seriesName:0,
-                // seriesName:2,
                 tooltip: [1,2]
             }
         }
