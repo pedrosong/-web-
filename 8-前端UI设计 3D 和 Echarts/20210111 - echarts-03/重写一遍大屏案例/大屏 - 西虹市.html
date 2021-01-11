@@ -60,7 +60,7 @@
             ['支出',200, 632, 601, 634, 850, 1000, 1100]
         ];
     const dom = document.getElementById('chartL1')
-    const myChart = echarts.init(dom,'chalyuuuu7ioooooooooooooooooooooooooooooooooook')
+    const myChart = echarts.init(dom,'chalk')
     const option = {
         title:{
             text:"西虹市人民收入增长情况",
@@ -87,6 +87,44 @@
     myChart.setOption(option)
 }
 
+{
+    /*数据源*/
+    const source=[
+            {value:5000,name:'旅游'},
+            {value:4500,name:'饮食'},
+            {value:6500,name:'服装'},
+            {value:3500,name:'电影'},
+            {value:2500,name:'其它'}
+        ];
+    
+    const dom = document.getElementById('chartL2')
+    const myChart = echarts.init(dom, "chalk")
+
+    const option = {
+        title:{
+            text:"西虹市人民出穿住行支出占比",
+            left:"center"
+        },
+        lengend:{
+            left:"left"
+        },
+        dataset:{
+            source
+        },
+        tooltip:{
+            formatter:function({parcent}){
+                return Math.round(parcent) + "%"
+            }
+        },
+        series:{
+            type:'pie',
+            center:['50%','60%']
+        }
+
+    }
+
+    myChart.setOption(option)
+}
 
 </script>
 </body>
