@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>重写</title>
+    <link rel="stylesheet" href="./css/main.css"></link>
+</head>
+<body>
+<!--标题-->
+<div id="header">西虹市经济情况可视化</div>
+<!--内容-->
+<div id="cont">
+    <div class="cont-edge">
+        <div id="chartL1" class="box"></div>
+        <div id="chartL2" class="box"></div>
+        <div id="chartL3" class="box"></div>
+    </div>
+    <div class="cont-center">
+        <div class="center-tit">
+            <div class="center-row">
+                <div class="center-num">12345678</div>
+                <div class="center-num">67890542</div>
+            </div>
+            <div class="center-row">
+                <div class="center-text">2019年收入情况</div>
+                <div class="center-text">2019年总支出情况</div>
+            </div>
+        </div>
+        <div class="center-cont">
+            <!--背景图-->
+            <div class="centerImg">
+                <!--网格点-->
+                <img class="img1" src="./images/lbx.png" alt="">
+            </div>
+            <div class="centerImg">
+                <!--流光-->
+                <img class="img2" src="./images/jt.png" alt="">
+            </div>
+            <!--地图容器-->
+            <div id="chartC"></div>
+        </div>
+    </div>
+    <div class="cont-edge">
+        <div id="chartR1" class="box"></div>
+        <div id="chartR2" class="box"></div>
+        <div class="box">
+            <div id="chartR3"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://lib.baomitu.com/echarts/4.7.0/echarts.min.js"></script>
+<srcipt src="./js/chalk.js"></srcipt>
+<script src="./js/walden.js"></script>
+<script>
+{
+    const source=[
+            ['年','2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+            ['收入',820, 932, 901, 934, 1290, 1330, 1520],
+            ['支出',200, 632, 601, 634, 850, 1000, 1100]
+        ];
+    const dom = document.getElementById('chartL1')
+    const myChart = echarts.init(dom,'chalyuuuu7ioooooooooooooooooooooooooooooooooook')
+    const option = {
+        title:{
+            text:"西虹市人民收入增长情况",
+            left:'center'
+        },
+        legend:{
+            left:'right'
+        },
+        dataset:{source},
+        xAxis:{
+            type:'category'
+        },
+        yAxis:{
+            type:'value'
+        },
+        series:[{
+            type:"line",
+            seriesLayoutBy:'row'
+        },{
+            type:'line',
+            seriesLayoutBy:'row'
+        }]
+    }
+    myChart.setOption(option)
+}
+
+
+</script>
+</body>
+</html>
