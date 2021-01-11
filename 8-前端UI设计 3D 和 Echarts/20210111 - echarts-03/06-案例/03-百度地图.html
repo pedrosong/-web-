@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度地图</title>
+    <style>
+        html{height:100%}
+        body{height:100%;margin:0px;padding:0px}
+        #container{height:100%}
+    </style>
+
+</head>
+<body>
+<div id="container"></div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=N4XKk2Y2TPrXzdn7Y0WNoAfoCpdtQmp9"></script>
+<script>
+    var map = new BMap.Map("container");
+    var point = new BMap.Point(116.404, 39.915);
+    map.centerAndZoom(point, 15);
+    map.addControl(new BMap.NavigationControl());
+    map.addControl(new BMap.ScaleControl());
+    map.addControl(new BMap.OverviewMapControl());
+    map.addControl(new BMap.MapTypeControl());
+    map.setCurrentCity("北京");
+    var marker = new BMap.Marker(point);        // 创建标注
+    map.addOverlay(marker);
+    map.setMapStyleV2({
+        styleId: '7d6289b4ffec7713869180aa7a191229'
+    });
+</script>
+</body>
+</html>
