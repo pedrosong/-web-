@@ -127,7 +127,88 @@
 }
 {
     // 散点图
-    const dom = doucnm
+    const dom = document.getElementById('chartL3')
+    const myChart = echarts.init(dom,'chalk')
+    const dimensions = ['收入','年龄','人口','住址','时间']
+
+    const option = {
+        title:{
+            text:'西虹市人民收入和年龄关系',
+            left:'center'
+        },
+        dataset:{
+            dimensions
+        },
+        xAxis:{
+            name:'年龄',
+            type:'value'
+        },
+        yAxis:{
+            name:'收入',
+            type:'value'
+        },
+        series:{
+            type:'scatter',
+            encode:{
+                x:1,
+                y:0,
+                tooltip:[0,1]
+            },
+            symbolSize:3,
+            itemStyle:{
+                opacity:0.2
+            }
+        }
+    }
+    fetch('./lib/table.json').then(res => res.json()).then(data => {
+        option.dataset.source = data
+        myChart.setOption(option)
+    })
+}
+{
+    const data=[
+            {
+                name : '预算分配',
+                value : [43000, 45000, 42000, 45000, 40000, 49000],
+            },
+            {
+                name : '实际开销',
+                value : [30000, 34000, 55000, 35000, 32000, 31000],
+            }
+        ];
+
+        const indicator=[
+            { name: '销售',min:0,max:60000},
+            { name: '管理',min:0,max:60000},
+            { name: '信息技术',min:0,max:60000},
+            { name: '客服',min:0,max:60000},
+            { name: '研发',min:0,max:60000},
+            { name: '市场',min:0,max:60000}
+        ];
+
+    const dom = document.getElementById('chartR1')
+    const myChart = echarts.init(dom,'chalk')
+
+    const option = {
+        title:{
+            text:'西虹市财务开销'
+        },
+        tooltip:{},
+        lengend:{
+            left:'left',
+            top:30,
+            orient:'vertical'
+        },
+        radar:{
+            indicator
+        },
+        series:{
+            type:'radar',
+            data:data
+        }
+    }
+
+    myChart.setOption(option)
 }
 </script>
 </body>
