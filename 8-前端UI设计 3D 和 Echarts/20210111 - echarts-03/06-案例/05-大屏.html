@@ -50,9 +50,9 @@
 </div>
 
 <!--引入echarts-->
-<script src="https://lib.baomitu.com/echarts/4.7.0/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.0.0/dist/echarts.min.js"></script>
 <!--引入样式-->
-<script src="./js/walden.js"></script>
+<script src="./js/chalk.js"></script>
 <!--引入百度地图api-->
 <script src="https://api.map.baidu.com/api?v=3.0&ak=EcMeTlWuNyyqL4GwZT5Nmlj9mtpvhE9Y"></script>
 <!--引入bmap 组件-->
@@ -71,7 +71,7 @@
         ];
 
         /*实例化echarts*/
-        const chart = echarts.init(document.getElementById('chartL1'),'walden');
+        const chart = echarts.init(document.getElementById('chartL1'),'chalk');
         /*配置项
         *   title
         *       text '西虹市人民收入增长情况'
@@ -134,7 +134,7 @@
         ];
 
         /*实例化echarts*/
-        const chart = echarts.init(document.getElementById('chartL2'),'walden');
+        const chart = echarts.init(document.getElementById('chartL2'),'chalk');
         /*配置项
         *   title
         *       text '西虹市人民衣食住行消费比'
@@ -175,7 +175,7 @@
     /*chartL3 - 散点图*/
     {
         /*实例化echarts*/
-        const chart = echarts.init(document.getElementById('chartL3'),'walden');
+        const chart = echarts.init(document.getElementById('chartL3'),'chalk');
 
         /*维度*/
         const dimensions=['收入','年龄','人口','住址','时间'];
@@ -288,7 +288,7 @@
         ];
 
         /*实例化echarts*/
-        const chart = echarts.init(document.getElementById('chartR1'),'walden');
+        const chart = echarts.init(document.getElementById('chartR1'),'chalk');
 
         /*配置项*/
         const option = {
@@ -355,7 +355,7 @@
         ];
 
         /*实例化echarts*/
-        const chart = echarts.init(document.getElementById('chartR2'),'walden');
+        const chart = echarts.init(document.getElementById('chartR2'),'chalk');
 
         /*配置项*/
         const option = {
@@ -471,7 +471,7 @@
 
     /*chartR3 - 百度地图*/
     {
-        const chart = echarts.init(document.getElementById('chartR3'),'walden');
+        const chart = echarts.init(document.getElementById('chartR3'),'chalk');
 
         const center=[121.48, 31.22]
         const option = {
@@ -565,7 +565,7 @@
 
     /*chartC - echarts地图*/
     {
-        const chart = echarts.init(document.getElementById('chartC'),'walden');
+        const chart = echarts.init(document.getElementById('chartC'),'chalk');
 
         /*配置项*/
         const option = {
