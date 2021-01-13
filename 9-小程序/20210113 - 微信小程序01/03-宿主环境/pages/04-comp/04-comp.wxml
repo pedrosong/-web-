@@ -1,0 +1,3 @@
+<!--pages/04-comp/04-comp.wxml-->
+<text>pages/04-comp/04-comp.wxml</text>
+<floatball text="开课吧" bind:tapBall="tapBall"></floatball>

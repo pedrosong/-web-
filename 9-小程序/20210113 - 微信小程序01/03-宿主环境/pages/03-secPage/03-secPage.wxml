@@ -1,0 +1,4 @@
+<!--pages/03-secPage/03-secPage.wxml-->
+<text>pages/03-secPage/03-secPage.wxml</text>
+<navigator open-type="navigateBack">返回</navigator>
+<button bindtap="back">js 返回</button>

@@ -1,0 +1,13 @@
+/* components/floatball/floatball.wxss */
+.ball{
+  width: 120rpx;
+  height: 120rpx;
+  background-color: #00acec;
+  border-radius: 50%;
+  text-align: center;
+  position: fixed;
+  bottom: 20rpx;
+  right: 20rpx;
+  color: #fff;
+  line-height: 120rpx;
+}

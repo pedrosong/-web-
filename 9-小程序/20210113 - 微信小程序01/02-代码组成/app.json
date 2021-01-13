@@ -1,0 +1,17 @@
+{
+  "pages":[
+    "pages/04-js/04-js",
+    "pages/03-wxss/03-wxss",
+    "pages/02-page/02-page",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#00acec",
+    "navigationBarTitleText": "代码组成",
+    "navigationBarTextStyle":"white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

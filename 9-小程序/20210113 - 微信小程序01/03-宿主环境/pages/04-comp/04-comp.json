@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "floatball":"../../components/floatball/floatball"
+  }
+}

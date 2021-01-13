@@ -1,0 +1,3 @@
+<!--components/floatball/floatball.wxml-->
+<text>components/floatball/floatball.wxml</text>
+<view class="ball" bindtap="tap">{{text}}</view>

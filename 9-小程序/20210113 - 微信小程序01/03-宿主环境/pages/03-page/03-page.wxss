@@ -1,0 +1,5 @@
+/* pages/03-page/03-page.wxss */
+.cont{
+  height: 1500rpx;
+  background-color: antiquewhite;
+}

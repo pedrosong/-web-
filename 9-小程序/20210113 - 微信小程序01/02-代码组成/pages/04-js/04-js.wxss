@@ -1,0 +1,6 @@
+/* pages/04-js/04-js.wxss */
+canvas{
+  width: 750rpx;
+  height: 750rpx;
+  background-color: bisque;
+}

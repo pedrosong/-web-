@@ -1,0 +1,6 @@
+<!--pages/03-wxss/03-wxss.wxml-->
+<text>pages/03-wxss/03-wxss.wxml</text>
+<view class="container sky">
+  <text class="bold">好好学习</text>
+  <view class="rect"></view>
+</view>

@@ -1,0 +1,35 @@
+<!--pages/02-page/02-page.wxml-->
+<text>pages/02-page/02-page.wxml</text>
+<!-- template 模板需要设置name -->
+<template name="hotel">
+  <text>{{name}}：</text>
+  <text wx:for="{{food}}" wx:key="id">{{index?'、':''}}{{item.name}}</text>
+</template>
+
+<view class="cont">
+  <!-- <text class="motto">{{motto}}</text> -->
+  <!-- <text class="motto">{{1+1+'只老虎'}}</text> -->
+  <!-- <text class="motto">{{name==='呷哺'?'火锅':'自己做饭'}}</text> -->
+  <!-- <text wx:if="{{name==='呷哺'}}">火锅</text> -->
+  <!-- <block wx:if="{{name==='呷哺'}}">
+    <text>火锅</text>，
+    <text>面条</text>
+  </block>
+  <text wx:elif="{{name==='肯德基'}}">汉堡</text>
+  <text wx:else>自己做饭</text> -->
+
+  <!-- 属性 -->
+  <!-- <view wx:for="{{food}}" wx:key="id"> -->
+  <!-- 索引 -->
+  <!-- <view wx:for="{{food}}" wx:key="index"> -->
+  <!-- 当前对象 -->
+  <!-- <view wx:for="{{food}}" wx:key="*this">
+    <text>{{index}}:{{item.name}}-{{item.id}}</text>
+  </view> -->
+  <!-- <view wx:for="{{food}}" wx:key="*this" wx:for-item="ele" wx:for-index="ind">
+    <text>{{ind}}:{{ele.name}}-{{ele.id}}</text>
+  </view> -->
+
+  <!-- 模板 -->
+  <template is="hotel" data="{{name,food}}"></template>
+</view>
