@@ -1,5 +1,10 @@
 # Echarts基础01 - 常用图表和对应option
 
+> 写在前面：
+>
+> 1. 本文是单纯的个人学习总结和课堂笔记整理，大部分知识点来自“开课吧”线上直播课程，以及官方资料。
+> 2. 由于目前仍处于前端学习、入门阶段，因此对于知识的掌握和理解难免会有偏差，因此该文章仅仅是个人记录，请查阅者不要以此作为资料依据。
+
 # 入门
 
 基于我们的需求，可以利用echarts库生成丰富多样的图表，我们只需做到如下几步：
@@ -361,6 +366,28 @@ series:[
 
 ### 请求json文件生成地图数据源
 
+使用此方式生成地图类图表的时候，需要保证在数据源中声明好地图图表需要的所有必要配置项，如下，需要声明类型、省份名称、边界经纬度等等。
+
+```json
+// 数据源示例
+			"type": "Feature",
+      "properties": {
+        "adcode": "120000",
+        "name": "天津市",
+        "center": [117.190182, 39.125596],
+        "centroid": [117.347019, 39.28803],
+        "childrenNum": 16,
+        "level": "province",
+        "parent": { "adcode": 100000 },
+        "subFeatureIndex": 1,
+        "acroutes": [100000],
+        "adchar": null
+      },
+      "geometry": {...}
+```
+
+确保数据源没有问题之后，就可以通过fetch或者ajax等数据请求方式，获取到json文件中的数据，然后将其返回结果转换为json字符串，这样就获取到了我们想要的数据。最后，绘制地图类图标也就水到渠成了，只需要在option里面声明好图标类型和地图注册名即可。
+
 ```html
 <script>
     //初始化echarts实例
@@ -370,7 +397,7 @@ series:[
     fetch('./data/China.json') //文件存放在该相对路径下
         .then((res) => res.json())
         .then(data => {
-            //通过registerMap
+            //通过registerMap把数据源注册成地图注册名，这样之后`China`就代表了来自data的数据
             echarts.registerMap('china',data);
             //echarts 配置文件
             const option = {
@@ -393,4 +420,81 @@ series:[
         })
 </script>
 ```
+
+### 通过geo绘制地图
+
+可见，如果采用上述在项目内存储 `json` 数据源，当我们要绘制一个详细的地图（比如具体到中国的每一个村庄、每一条乡村小路）的时候，项目中的 `json` 数据源就会变得非常庞大、冗余。为了解决这个问题，geo组件应运而生，`geo.map` 属性提供了两种方式，一种是可以直接 `script` 标签引入的 `js` 文件，引入后会自动注册地图名字和数据。还有一种是 `json` 文件，需要通过 `ajax` 异步加载后手动注册，从而减少项目本身代码的体积。
+
+`geo` 是地理坐标系组件。地理坐标系组件用于地图的绘制，支持在地理坐标系上绘**制散点图**、**线集**。
+
+```html
+<script>
+  const myChart = echarts.init(document.getElementById("main"));
+  /*获取接送文件*/
+  fetch("./data/China.json")
+    .then((res) => res.json())
+    .then((data) => {
+      echarts.registerMap("china", data);
+      const option = {
+        title: {
+          text: "中国地图",
+          left: "center",
+          textStyle: {
+            color: "rgba(255,255,255,0.8)",
+          },
+          top: 24,
+        },
+        geo: {
+          map: "china", // 引入注册号的地图名字
+          roam: true, // 开启鼠标缩放和平移漫游
+          zoom: 1, // 当前视角的缩放比例
+          itemStyle: { // 默认情况下图形的样式
+            areaColor: "#004981", // 地图区域的颜色
+            borderColor: "#029fd4", // 图形的描边颜色
+          },
+          emphasis: { // 高亮状态下图形的样式
+            itemStyle: {
+              color: "#029fd4",
+            },
+            label: {
+              color: "#fff",
+            },
+          },
+        },
+        series: [
+          {
+            name: "pm2.5",
+            type: "scatter", // 散点图
+            coordinateSystem: "geo", // 该系列使用的坐标系: geo地理坐标系
+            data: [
+              {
+                name: "海门",
+                value: [121.15, 31.89, 9],
+              },
+              {
+                name: "鄂尔多斯",
+                value: [109.781327, 39.608266, 12],
+              },
+              {
+                name: "招远",
+                value: [120.38, 37.35, 18],
+              },
+            ],
+            /*散点标记的大小
+            *		1.可以设置成固定的值；
+            *		2.可以利用回调函数，如下，每一个每一个系列下值的标记大小取决于该数据对						*			象value下的第三个值		
+            */ 
+            symbolSize: function (val) { 
+              return val[2];
+            },
+          },
+        ],
+      };
+      myChart.setOption(option);
+    });
+</script>
+
+```
+
+
 

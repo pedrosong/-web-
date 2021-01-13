@@ -7,6 +7,6 @@
 	"settings": {
 		"git.ignoreLimitWarning": true,
 		"editor.minimap.enabled": false,
-		"editor.fontSize": 18
+		"editor.fontSize": 16
 	}
 }
