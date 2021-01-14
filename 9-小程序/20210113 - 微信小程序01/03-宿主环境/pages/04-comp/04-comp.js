@@ -9,7 +9,7 @@ Page({
   },
 
   /* 接收子组件数据 */
-  tapBall(param){
+  doClickBall(param){
     console.log(param);
     
   },

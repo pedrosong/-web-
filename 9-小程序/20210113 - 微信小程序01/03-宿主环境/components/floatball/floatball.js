@@ -22,7 +22,8 @@ Component({
    */
   methods: {
     tap(){
-      this.triggerEvent('tapBall',{tap:true})
+      console.log(111)
+      this.triggerEvent('onClickBall',{tap:false})
     }
   }
 })

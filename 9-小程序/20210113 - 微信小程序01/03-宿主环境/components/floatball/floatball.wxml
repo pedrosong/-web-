@@ -1,3 +1,3 @@
-<!--components/floatball/floatball.wxml-->
+<!-- components/floatball/floatball.wxml -->
 <text>components/floatball/floatball.wxml</text>
-<view class="ball" bindtap="tap">{{text}}</view>
+<view class="ball" bind:handleClickBall="handleClickBall">{{text}}</view>

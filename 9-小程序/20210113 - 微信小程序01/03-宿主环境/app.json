@@ -1,10 +1,10 @@
 {
   "pages":[
-    "pages/05-event/05-event",
+    "pages/index/index",
     "pages/04-comp/04-comp",
+    "pages/05-event/05-event",
     "pages/03-page/03-page",
     "pages/03-secPage/03-secPage",
-    "pages/index/index",
     "pages/logs/logs"
   ],
   "window":{
