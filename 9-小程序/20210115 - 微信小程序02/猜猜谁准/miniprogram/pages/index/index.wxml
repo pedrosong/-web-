@@ -1,0 +1,47 @@
+<!--index.wxml-->
+<view class="container">
+	<!-- 已登录 -->
+	<block wx:if="{{logged}}">
+		<!-- 用户头像 -->
+		<view class="avatar">
+			<image class="player-image" src="{{avatarUrl}}"></image>
+		</view>
+		<!-- 昵称 -->
+		<view id="nickName">{{nickName}}</view>
+		<!-- 房间 -->
+		<view wx-if="{{logged}}">
+			<!-- 进出房间按钮 -->
+			<view class="btnWrapper">
+				<button class="btn" bindtap="toggleRoom">
+					{{inroom?'离开房间':'进入房间'}}
+				</button>
+			</view>
+			<!-- 室内 -->
+			<view id="room">
+				<image 
+				wx:for="{{players}}" 
+				wx:if="{{item.inroom}}"
+				wx:key="*this" 
+				class="player" 
+				src="{{item.avatarUrl}}"
+				></image>
+			</view>
+			<!-- 游戏启动信息-若玩家在房间中就显示
+						若玩家为房主，显示开始游戏按钮
+						若玩家为房客，显示等待提示
+			 -->
+			<view class="btnWrapper" wx-if="{{inroom}}">
+				<button wx:if="{{role==1}}" class="btn" bindtap="play">开始游戏</button>
+				<text wx:if="{{role==2}}">等待房主开始游戏……</text>
+			</view>
+		</view>
+	</block>
+
+	<!-- 未登录，可点击登录 -->
+	<block wx:else>
+		<button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="avatar">
+			<image class="player-image" src="cloud://kkb-kn8rp.6b6b-kkb-kn8rp-1302447185/mdata/app/head.jpg"></image>
+		</button>
+		<view id="nickName">点击登录</view>
+	</block>
+</view>

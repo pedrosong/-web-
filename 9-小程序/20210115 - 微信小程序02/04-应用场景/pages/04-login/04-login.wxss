@@ -1,0 +1,9 @@
+/* pages/05-login/05-login.wxss */
+.cont{
+  text-align: center;
+  padding:30rpx
+}
+.cont button{
+  margin-top: 30rpx;
+}
+

@@ -1,0 +1,7 @@
+/* pages/07-scanCode/07-scanCode.wxss */
+.cont{
+  text-align: center;
+}
+.cont button{
+  margin: 30rpx;
+}

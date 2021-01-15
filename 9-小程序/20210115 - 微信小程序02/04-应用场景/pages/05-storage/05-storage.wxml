@@ -1,0 +1,6 @@
+<!--pages/06-storage/06-storage.wxml-->
+<text>pages/06-storage/06-storage.wxml</text>
+<!-- 遍历商品列表 -->
+<view class="container">
+  <view wx:for="{{list}}" wx:key="id">商品信息：{{item.name}}</view>
+</view>

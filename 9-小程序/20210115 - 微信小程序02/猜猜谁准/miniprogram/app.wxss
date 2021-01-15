@@ -1,0 +1,11 @@
+/**app.wxss**/
+.container {
+  padding: 23rpx;
+} 
+.text-center{
+  text-align: center;
+}
+.btn{
+  border: 1px solid #ddd;
+  box-shadow: 0 3px 3px #ddd;
+}

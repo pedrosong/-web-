@@ -1,0 +1,8 @@
+<!--pages/07-scanCode/07-scanCode.wxml-->
+<text>pages/07-01-scanCode/07-01-scanCode.wxml</text>
+<view>
+  <view class="cont">
+    <button bindtap='getScancode'>扫码点餐</button>
+    <text>餐桌编号：{{code}}</text>
+  </view>
+</view>

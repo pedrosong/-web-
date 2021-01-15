@@ -1,0 +1,36 @@
+<view class="container">
+  <!-- 倒计时提示 -->
+  <view id="tip">
+    <text id="countTip" wx:if="{{counting&&!gameOver}}">{{countTip}}</text>
+    <text id="diff" wx:if="{{gameOver}}">距离目标点 {{diff}} ms</text>
+  </view>
+  <!-- 目标点 -->
+  <view id="arrowWrapper">
+      <image id="arrow" class="{{playing?'ani':''}}" src="../../images/arrow.png"></image>
+  </view>
+  <!-- 进度条 -->
+  <view id="barWrapper">
+    <view id="bar" style="width:{{progress}}%"></view>
+  </view>
+  <!-- 点击按钮 -->
+  <view id="btnWrapper">
+    <button id="tapBtn" bindtap="tap" class="btn" disabled="{{!playing||gameOver}}">
+      {{gameOver?'榜上有名':'点一下'}}
+    </button>
+  </view>
+  <!-- 玩家列表 -->
+  <view id="players" wx:if="{{gameOver}}">
+    <view class="player" wx:for="{{players}}"  wx:key="*this"> 
+      <!-- 排名 -->
+      <view class="col">{{index+1}}</view>
+      <!-- 头像 -->
+      <view class="col">
+        <image class="player-image" src="{{item.avatarUrl}}"></image>
+      </view>
+      <!-- 昵称 -->
+      <view class="col">{{item.nickName}}</view>
+      <!-- 时差 -->
+      <view class="col">{{item.diff}}</view>
+    </view>
+  </view>
+</view>

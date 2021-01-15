@@ -1,0 +1,7 @@
+/* pages/03-feedback/03-feedback.wxss */
+button{
+  margin-top: 24rpx;
+}
+.sky{
+  color: #00acec;
+}

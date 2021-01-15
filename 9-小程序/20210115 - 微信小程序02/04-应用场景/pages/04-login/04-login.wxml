@@ -1,0 +1,11 @@
+<!--pages/05-login/05-login.wxml-->
+<text>pages/05-login/05-login.wxml</text>
+<view class="cont">
+  <view  wx:if="{{hasUserInfo}}">
+    {{userInfo.nickName}}您好，欢迎{{type}}光临本店
+  </view>
+  <view wx:else>
+    <text>您好，欢迎光临本店！请登录</text>
+    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button>
+  </view>
+</view>

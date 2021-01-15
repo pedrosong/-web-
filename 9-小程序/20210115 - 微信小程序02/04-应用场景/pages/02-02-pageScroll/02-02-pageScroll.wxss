@@ -1,0 +1,10 @@
+/* pages/03-pageScroll/03-pageScroll.wxss */
+.item{
+  height: 150rpx;
+  text-align: center;
+}
+
+
+#bottomTip{
+  text-align: center;
+}

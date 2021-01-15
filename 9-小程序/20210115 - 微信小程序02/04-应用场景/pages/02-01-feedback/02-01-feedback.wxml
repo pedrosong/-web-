@@ -1,0 +1,11 @@
+<!--pages/03-feedback/03-feedback.wxml-->
+<text>pages/03-feedback/03-feedback.wxml</text>
+<view class="container">
+  <!-- 支付示例
+        点击按钮时，hover-class，loading，支付
+        当用户支付成功时，showToast() 提示支付成功
+        当用户支付失败时，showModal() 提示支付失败，并引导用户用其它方式支付
+   -->
+  <button hover-class="sky" loading="{{paying}}" bindtap="pay">支付</button>
+</view>
+

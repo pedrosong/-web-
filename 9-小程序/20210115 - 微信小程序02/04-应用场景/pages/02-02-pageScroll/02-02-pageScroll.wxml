@@ -1,0 +1,7 @@
+<!--pages/03-pageScroll/03-pageScroll.wxml-->
+<view class="container">
+  <!-- 遍历新闻列表newsList，生成新闻 -->
+  <view class="item" wx:for="{{newsList}}" wx:key="id">
+    <text>id:{{item.id}}</text>
+  </view>
+</view>

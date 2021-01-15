@@ -1,0 +1,75 @@
+#tip{
+  display: flex;
+  height: 150rpx;
+  justify-content: center;
+  align-items: center;
+}
+#countTip{
+  font-size: 90rpx;
+  font-weight: bold;
+  color: #999;
+}
+#diff{
+  color: #333;
+}
+#arrowWrapper{
+  text-align: center;
+}
+#arrow{
+  width:40rpx; 
+  height:60rpx;
+}
+.ani{
+  animation:ani 500ms linear infinite;
+}
+@keyframes ani{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-50%);}
+  100%{transform:translateY(0%);}
+}
+#barWrapper{
+  height: 36rpx;
+  background: #eee;
+  margin-bottom: 90rpx;
+}
+#bar{
+  height: 100%;
+  background-color: #000;
+}
+#btnWrapper{
+  margin-bottom: 80rpx;
+}
+#beginBtn{
+  border: 1px solid #ddd;
+  box-shadow: 0 3px 3px #ddd;
+}
+.player{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  height: 90rpx;
+}
+.player-image{
+  border-radius: 50%;
+  width: 50rpx;
+  height: 50rpx;
+}
+.col{
+  text-align: center;
+}
+.col:nth-child(1){
+  width: 100rpx;
+}
+.col:nth-child(2){
+  width: 200rpx;
+}
+.col:nth-child(3){
+  width: 200rpx;
+}
+.col:nth-child(4){
+  width: 204rpx;
+}
+
+
+
+
