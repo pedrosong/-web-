@@ -1,0 +1,5 @@
+<!--pages/03-tongxin/03-tongxin.wxml-->
+<text>pages/03-tongxin/03-tongxin.wxml</text>
+<view>
+  <button data-key="天天向上" bindtap="tap">{{motto}}</button>
+</view>

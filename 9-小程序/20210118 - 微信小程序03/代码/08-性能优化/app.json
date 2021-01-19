@@ -1,0 +1,31 @@
+{
+  "pages":[
+    "pages/03-tongxin/03-tongxin",
+    "pages/01-pageA/01-pageA",
+    "pages/01-pageB/01-pageB",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "subPackages": [
+    {
+      "root": "packageA",
+      "pages": [
+        "pages/banana/banana"
+      ]
+    },
+    {
+      "root": "packageB",
+      "pages": [
+        "pages/apple/apple"
+      ]
+    }
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle":"black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

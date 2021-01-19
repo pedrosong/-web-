@@ -1,0 +1,1 @@
+<view><text>作业暗号：正割</text><camera style="width:100%;height:300px;" device-position="front" flash="off" data-event-opts="{{[['error',[['error',['$event']]]]]}}" binderror="__e"></camera><button data-event-opts="{{[['tap',[['handleClick',['$event']]]]]}}" bindtap="__e">take a shot</button><text>上面是预览画面,下面是拍照画面</text><image mode="widthFix" src="{{src}}"></image></view>
