@@ -1,0 +1,52 @@
+{
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "minified": true,
+    "postcss": true,
+    "es6": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "",
+  "appid": "wx5b0b3aa469d2b32a",
+  "projectname": "12-美食收藏",
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "city",
+          "id": 0,
+          "pathName": "pages/city/city"
+        },
+        {
+          "name": "detail",
+          "query": "id=47",
+          "id": 1,
+          "pathName": "pages/detail/detail"
+        },
+        {
+          "name": "personal",
+          "id": 2,
+          "pathName": "pages/personal/personal"
+        },
+        {
+          "name": "collectList",
+          "id": 3,
+          "pathName": "pages/collectList/collectList"
+        }
+      ]
+    }
+  }
+}
